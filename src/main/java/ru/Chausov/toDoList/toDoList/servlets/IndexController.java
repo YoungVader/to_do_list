@@ -1,4 +1,4 @@
-package ru.Chausov.toDoList.toDoList;
+package ru.Chausov.toDoList.toDoList.servlets;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
