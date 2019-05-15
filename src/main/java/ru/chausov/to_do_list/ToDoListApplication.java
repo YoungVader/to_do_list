@@ -1,4 +1,4 @@
-package ru.Chausov.toDoList.toDoList;
+package ru.chausov.to_do_list;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

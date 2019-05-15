@@ -1,10 +1,10 @@
-package ru.Chausov.toDoList.toDoList.servlets;
+package ru.chausov.to_do_list.servlets;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ru.Chausov.toDoList.toDoList.dataBase.entities.Visit;
-import ru.Chausov.toDoList.toDoList.dataBase.repositories.VisitsRepository;
+import ru.chausov.to_do_list.data_base.entities.Visit;
+import ru.chausov.to_do_list.data_base.repositories.VisitsRepository;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;

@@ -1,10 +1,10 @@
-package ru.Chausov.toDoList.toDoList.servlets.api;
+package ru.chausov.to_do_list.servlets.api;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.Chausov.toDoList.toDoList.dataBase.entities.Visit;
-import ru.Chausov.toDoList.toDoList.dataBase.repositories.VisitsRepository;
+import ru.chausov.to_do_list.data_base.entities.Visit;
+import ru.chausov.to_do_list.data_base.repositories.VisitsRepository;
 
 @RestController
 @RequestMapping("/api")

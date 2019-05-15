@@ -1,4 +1,4 @@
-package ru.Chausov.toDoList.toDoList;
+package ru.chausov.to_do_list;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

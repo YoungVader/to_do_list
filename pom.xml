@@ -8,10 +8,10 @@
 		<version>2.1.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>ru.Chausov.toDoList</groupId>
-	<artifactId>toDoList</artifactId>
+	<groupId>ru.chausov.to-do-list</groupId>
+	<artifactId>to-do-list</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>toDoList</name>
+	<name>to-do-list</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

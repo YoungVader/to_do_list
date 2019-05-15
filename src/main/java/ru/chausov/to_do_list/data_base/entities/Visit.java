@@ -1,4 +1,4 @@
-package ru.Chausov.toDoList.toDoList.dataBase.entities;
+package ru.chausov.to_do_list.data_base.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
