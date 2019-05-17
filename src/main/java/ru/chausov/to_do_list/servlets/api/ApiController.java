@@ -12,7 +12,7 @@ import ru.chausov.to_do_list.data_base.repositories.VisitsRepository;
 @RequiredArgsConstructor
 public class ApiController {
 
-    final VisitsRepository visitsRepository;
+    private final VisitsRepository visitsRepository;
 
     @GetMapping("/visits")
     public Iterable<Visit> getVisits() {

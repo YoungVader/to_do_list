@@ -1,21 +1,20 @@
 package ru.chausov.to_do_list.data_base.entities;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Value;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+
+@Value
 @Builder
-@Getter
-@Setter
 @Entity
 public class Visit {
     @Id
     @GeneratedValue
-    public Long id;
+    Long id;
 
-    private String description;
+    String description;
 }
