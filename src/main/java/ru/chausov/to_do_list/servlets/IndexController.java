@@ -19,7 +19,7 @@ public class IndexController {
         this.visitsRepository = visitsRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     public ModelAndView index() {
         Map<String, String> model = new HashMap<>();
         model.put("name", "Aleksandr");
