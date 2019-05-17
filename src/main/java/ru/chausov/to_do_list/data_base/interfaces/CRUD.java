@@ -1,7 +1,10 @@
 package ru.chausov.to_do_list.data_base.interfaces;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public interface CRUD {
-    boolean create(String sqlCreateRequest);
-    boolean update(String sqlUpdateRequest);
-    boolean delete(String sqlDeleteRequest);
+    ResultSet create(String sqlCreateQuery) throws SQLException;
+    ResultSet update(String sqlUpdateQuery) throws SQLException;
+    ResultSet delete(String sqlDeleteQuery) throws SQLException;
 }
