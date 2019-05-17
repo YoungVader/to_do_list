@@ -6,15 +6,18 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import java.util.Date;
 
 @Data
 @Builder
 @Entity
-public class Visit {
+public class User {
     @Id
     @GeneratedValue
     final private Long id;
-
-    private String description;
+    private String name;
+    private String lastName;
+    private Date birthDate;
+    private String address;
+    private String company;
 }
