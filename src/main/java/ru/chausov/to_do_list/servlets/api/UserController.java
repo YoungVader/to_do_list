@@ -14,8 +14,9 @@ import java.sql.Statement;
 @Data
 @Builder
 @RequiredArgsConstructor
-public class UserController implements CRUD {
-    private final Statement statement;
+public class UserController implements CRUD { // Контроллер только получает запросы - отдаёт данные обычно. Логика пишется в сервисах
+
+    private final Statement statement; //Он вообще есть в контексте?
 
     private boolean createUser(User user) {
         String createQuery = "INSERT INTO Tasks VALUES("

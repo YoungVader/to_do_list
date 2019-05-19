@@ -17,7 +17,7 @@ public class User {
     final private Long id;
     private String name;
     private String lastName;
-    private Date birthDate;
+    private Date birthDate; // Класс Date устарел. LocalDateTime/ZonedDateTime/Instant
     private String address;
     private String company;
 }

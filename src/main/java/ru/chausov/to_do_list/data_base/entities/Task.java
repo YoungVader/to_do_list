@@ -18,7 +18,7 @@ public class Task {
     private String name;
     private String description;
     final private Long userId;
-    private Date receivedDate;
-    private Date toBeDone;
+    private Date receivedDate; // Класс Date устарел. LocalDateTime/ZonedDateTime/Instant
+    private Date toBeDone; // Класс Date устарел. LocalDateTime/ZonedDateTime/Instant
     private boolean done;
 }

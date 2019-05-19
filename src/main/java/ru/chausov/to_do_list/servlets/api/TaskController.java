@@ -15,7 +15,7 @@ import java.sql.Statement;
 @RequiredArgsConstructor
 public class TaskController implements CRUD {
 
-    private final Statement statement;
+    private final Statement statement; // Читай описание javadoc в классе (Ctrl+клик). Класс не thread-safe
 
     private boolean createTask(Task task) {
         String createQuery = "INSERT INTO Tasks VALUES("
@@ -30,7 +30,8 @@ public class TaskController implements CRUD {
         boolean created;
 
         try {
-            create(createQuery);
+            create(createQuery); // SQL Injection, используй PreparedStatement, если хочешь низкоуровнево.
+            //Всё что тебе надо есть в CrudRepository (по аналогии с VisitsRepository)
 
             created = true;
         } catch (SQLException e) {
