@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Data
 @Builder
@@ -21,7 +22,7 @@ public class User {
     private Long id; //how to make final to get through might be uninitialised?
     private String name;
     private String lastName;
-    private Date birthDate;
+    private LocalDateTime birthDate;
     private String address;
     private String company;
 }

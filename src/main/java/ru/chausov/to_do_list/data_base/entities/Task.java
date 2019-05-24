@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Data
 @Builder
@@ -22,7 +23,7 @@ public class Task {
     private String name;
     private String description;
     private Long userId; //how to make final to get through might be uninitialised?
-    private Date receivedDate;
-    private Date toBeDone;
+    private LocalDateTime receivedDate;
+    private LocalDateTime toBeDone;
     private boolean done;
 }
