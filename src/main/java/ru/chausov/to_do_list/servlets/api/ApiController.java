@@ -11,8 +11,9 @@ import ru.chausov.to_do_list.data_base.repositories.TasksRepository;
 import ru.chausov.to_do_list.data_base.repositories.UsersRepository;
 import ru.chausov.to_do_list.data_base.repositories.VisitsRepository;
 
+
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,6 +26,7 @@ public class ApiController {
     private final UsersRepository usersRepository;
     private final TasksRepository tasksRepository;
 
+    private final EntityManager entityManager;
 
     @Transactional
     @GetMapping("/visits")
@@ -35,7 +37,14 @@ public class ApiController {
     @Transactional
     @GetMapping("/users")
     public Iterable<User> getUsers() {
-        List<User> users = new ArrayList<>();
+        List<User> users = entityManager.createQuery("SELECT a.id FROM User a", User.class).getResultList();
+
+        System.out.println("TEST PRINT");
+        for(User u : users) {
+            System.out.println("user id " + u.getId());
+        }
+        usersRepository.deleteAll();
+        usersRepository.saveAll(users);
         return usersRepository.findAll();
     }
 

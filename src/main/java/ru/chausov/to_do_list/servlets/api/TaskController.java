@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import ru.chausov.to_do_list.data_base.entities.Task;
-import ru.chausov.to_do_list.data_base.interfaces.CRUD;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,11 +13,12 @@ import java.sql.Statement;
 @Data
 @Builder
 @RequiredArgsConstructor
-public class TaskController implements CRUD {
+public class TaskController {
 
     private final Statement statement;
 
     private boolean createTask(Task task) {
+
         String createQuery = "INSERT INTO Tasks VALUES("
                 + task.getId() + ", " + task.getDescription()
                 + ", " + task.getName()
@@ -55,17 +56,17 @@ public class TaskController implements CRUD {
         return false;
     }
 
-    @Override
+
     public ResultSet create(String sqlCreateQuery) throws SQLException {
         return statement.executeQuery(sqlCreateQuery);
     }
 
-    @Override
+
     public ResultSet update(String sqlUpdateQuery) throws SQLException {
         return statement.executeQuery(sqlUpdateQuery);
     }
 
-    @Override
+
     public ResultSet delete(String sqlDeleteQuery) throws SQLException {
         return statement.executeQuery(sqlDeleteQuery);
     }

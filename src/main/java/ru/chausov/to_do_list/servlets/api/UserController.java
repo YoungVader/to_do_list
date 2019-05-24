@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import ru.chausov.to_do_list.data_base.entities.User;
-import ru.chausov.to_do_list.data_base.interfaces.CRUD;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ import java.sql.Statement;
 @Data
 @Builder
 @RequiredArgsConstructor
-public class UserController implements CRUD {
+public class UserController {
     private final Statement statement;
 
     private boolean createUser(User user) {
@@ -50,17 +50,17 @@ public class UserController implements CRUD {
         return false;
     }
 
-    @Override
+
     public ResultSet create(String sqlCreateQuery) throws SQLException {
         return statement.executeQuery(sqlCreateQuery);
     }
 
-    @Override
+
     public ResultSet update(String sqlUpdateQuery) throws SQLException {
         return statement.executeQuery(sqlUpdateQuery);
     }
 
-    @Override
+
     public ResultSet delete(String sqlDeleteQuery) throws SQLException {
         return statement.executeQuery(sqlDeleteQuery);
     }
