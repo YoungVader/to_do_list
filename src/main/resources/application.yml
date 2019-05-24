@@ -3,8 +3,10 @@ spring:
     name: to_do_list
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost/to_do_list
+    url: jdbc:postgresql://localhost:5432/to_do_list
     username: postgres
     password: 12345678
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 server:
-  port: 5432
+  port: 80
