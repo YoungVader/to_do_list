@@ -5,8 +5,10 @@ spring:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/to_do_list
     username: postgres
-    password: postgres
+    password: 12345678
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
 server:
   port: 80

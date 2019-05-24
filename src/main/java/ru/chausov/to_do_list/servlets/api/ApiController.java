@@ -37,14 +37,8 @@ public class ApiController {
     @Transactional
     @GetMapping("/users")
     public Iterable<User> getUsers() {
-        List<Long> users = entityManager.createQuery("SELECT a.id FROM User a", Long.class).getResultList();
+        List<User> users = entityManager.createQuery("SELECT a FROM User a", User.class).getResultList();
 
-        System.out.println("TEST PRINT");
-        for(Long u : users) {
-            System.out.println("user id " + u);
-        }
-       // usersRepository.deleteAll();
-       // usersRepository.saveAll(users);
         return usersRepository.findAll();
     }
 
