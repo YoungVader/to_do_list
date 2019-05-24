@@ -11,6 +11,7 @@ import ru.chausov.to_do_list.data_base.repositories.TasksRepository;
 import ru.chausov.to_do_list.data_base.repositories.UsersRepository;
 import ru.chausov.to_do_list.data_base.repositories.VisitsRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,19 +26,20 @@ public class ApiController {
     private final TasksRepository tasksRepository;
 
 
+    @Transactional
     @GetMapping("/visits")
     public Iterable<Visit> getVisits() {
         return visitsRepository.findAll();
     }
 
-
+    @Transactional
     @GetMapping("/users")
     public Iterable<User> getUsers() {
         List<User> users = new ArrayList<>();
         return usersRepository.findAll();
     }
 
-
+    @Transactional
     @GetMapping("/tasks")
     public Iterable<Task> getTasks() {
         return tasksRepository.findAll();
