@@ -11,7 +11,6 @@ import ru.chausov.to_do_list.data_base.repositories.VisitsRepository;
 import javax.transaction.Transactional;
 
 
-
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
