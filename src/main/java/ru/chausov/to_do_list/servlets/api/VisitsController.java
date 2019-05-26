@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class ApiController {
+public class VisitsController {
     private final VisitsRepository visitsRepository;
 
     @Transactional
