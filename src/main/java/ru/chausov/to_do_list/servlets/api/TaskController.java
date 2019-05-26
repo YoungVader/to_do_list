@@ -1,73 +1,25 @@
 package ru.chausov.to_do_list.servlets.api;
 
-import lombok.Builder;
-import lombok.Data;
+
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.chausov.to_do_list.data_base.entities.Task;
+import ru.chausov.to_do_list.data_base.repositories.TasksRepository;
+
+import javax.transaction.Transactional;
 
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-@Data
-@Builder
+@RestController
+@RequestMapping("/api/tasks")
 @RequiredArgsConstructor
 public class TaskController {
+    private final TasksRepository tasksRepository;
 
-    private final Statement statement;
-
-    private boolean createTask(Task task) {
-
-        String createQuery = "INSERT INTO Tasks VALUES("
-                + task.getId() + ", " + task.getDescription()
-                + ", " + task.getName()
-                + ", " + task.getReceivedDate()
-                + ", " + task.getToBeDone()
-                + ", " + task.getUserId()
-                + ", " + task.isDone()
-                + ")";
-
-        boolean created;
-
-        try {
-            create(createQuery);
-
-            created = true;
-        } catch (SQLException e) {
-            created = false;
-        }
-
-        return created;
-    }
-
-    private boolean updateTask(Task task) {
-        //some code
-        return false;
-    }
-
-    private boolean deleteTask(Long id) {
-        //some code
-        return false;
-    }
-
-    private boolean setTaskDone(Long id) {
-        //some code
-        return false;
-    }
-
-
-    public ResultSet create(String sqlCreateQuery) throws SQLException {
-        return statement.executeQuery(sqlCreateQuery);
-    }
-
-
-    public ResultSet update(String sqlUpdateQuery) throws SQLException {
-        return statement.executeQuery(sqlUpdateQuery);
-    }
-
-
-    public ResultSet delete(String sqlDeleteQuery) throws SQLException {
-        return statement.executeQuery(sqlDeleteQuery);
+    @Transactional
+    @GetMapping("/table")
+    public Iterable<Task> getTasks() {
+        return tasksRepository.findAll();
     }
 }
