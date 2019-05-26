@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 
 @Data
@@ -21,7 +21,7 @@ public class User {
     private Long id; //how to make final to get through might be uninitialised?
     private String name;
     private String lastName;
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
     private String address;
     private String company;
 }
