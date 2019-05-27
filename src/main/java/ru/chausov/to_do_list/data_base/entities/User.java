@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.chausov.to_do_list.data_base.types.Gender;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class User {
     private String name;
     private String lastName;
     private LocalDate birthDate;
+    private Gender gender;
     private String address;
     private String company;
 }
