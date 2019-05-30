@@ -1,6 +1,7 @@
 package ru.chausov.to_do_list.servlets.api;
 
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.chausov.to_do_list.data_base.entities.Task;
@@ -10,6 +11,7 @@ import javax.transaction.Transactional;
 
 
 @RestController
+@Data
 @RequestMapping("/api/tasks")
 @RequiredArgsConstructor
 public class TaskController {
@@ -23,34 +25,26 @@ public class TaskController {
 
     @Transactional
     @PostMapping("/add")
-    public Iterable<Task> addTask(@RequestParam(value = "id", required = false) Long id, Task task) {
+    public void addTask(@RequestParam(value = "id", required = false) Long id, Task task) {
         tasksRepository.save(task);
-
-        return tasksRepository.findAll();
     }
 
     @Transactional
     @PostMapping("/delete")
-    public Iterable<Task> deleteTask(@RequestParam(value = "id") Long id) {
+    public void deleteTask(@RequestParam(value = "id") Long id) {
         tasksRepository.deleteById(id);
-
-        return tasksRepository.findAll();
     }
 
     @Transactional
     @PostMapping("/update")
-    public Iterable<Task> updateTask(@RequestParam(value = "id") Long id, Task task) {
+    public void updateTask(@RequestParam(value = "id") Long id, Task task) {
         tasksRepository.save(task);
-
-        return tasksRepository.findAll();
     }
 
     @Transactional
     @PostMapping("/done")
-    public Iterable<Task> makeTaskDone(@RequestParam(value = "id") Long id, Task task) {
+    public void makeTaskDone(@RequestParam(value = "id") Long id, Task task) {
         task.setDone(true);
         tasksRepository.save(task);
-
-        return tasksRepository.findAll();
     }
 }
