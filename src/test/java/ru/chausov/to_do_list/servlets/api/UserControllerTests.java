@@ -1,20 +1,19 @@
 package ru.chausov.to_do_list.servlets.api;
 
 
-import lombok.RequiredArgsConstructor;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import ru.chausov.to_do_list.containers.DataBase;
 import ru.chausov.to_do_list.data_base.entities.User;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@RequiredArgsConstructor
-public class UserControllerTests {
+public class UserControllerTests  extends DataBase {
 
     @Autowired
     private UserController userController;
