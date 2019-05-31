@@ -7,13 +7,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.chausov.to_do_list.containers.DataBase;
 import ru.chausov.to_do_list.data_base.entities.User;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserControllerTests  extends DataBase {
+public class UserControllerTests  {
 
     @Autowired
     private UserController userController;
