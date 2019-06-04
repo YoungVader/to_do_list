@@ -18,7 +18,7 @@ public class UserControllerTests  {
     private UserController userController;
 
     @Test
-    public void contextLoads() throws Exception {
+    public void contextLoads() {
         Assert.assertNotNull(userController);
         Assert.assertNotNull(userController.getUsersRepository());
     }
