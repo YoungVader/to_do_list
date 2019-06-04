@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.chausov.to_do_list.data_base.entities.User;
 
-import java.util.ArrayList;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
