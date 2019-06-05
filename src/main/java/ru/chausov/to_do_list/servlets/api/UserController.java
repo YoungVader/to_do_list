@@ -26,8 +26,8 @@ public class UserController {
 
     @Transactional
     @PostMapping("/add")
-    public void addUser(@RequestParam(value = "id", required = false) Long id, User user) {
-        usersRepository.save(user);
+    public User addUser(@RequestParam(value = "id", required = false) Long id, User user) {
+        return usersRepository.save(user);
     }
 
     @Transactional
@@ -38,7 +38,7 @@ public class UserController {
 
     @Transactional
     @PostMapping("/update")
-    public void updateUser(@RequestParam(value = "id") Long id, User user) {
-        usersRepository.save(user);
+    public User updateUser(@RequestParam(value = "id") Long id, User user) {
+        return usersRepository.save(user);
     }
 }

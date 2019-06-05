@@ -25,8 +25,8 @@ public class TaskController {
 
     @Transactional
     @PostMapping("/add")
-    public void addTask(@RequestParam(value = "id", required = false) Long id, Task task) {
-        tasksRepository.save(task);
+    public Task addTask(@RequestParam(value = "id", required = false) Long id, Task task) {
+        return tasksRepository.save(task);
     }
 
     @Transactional
@@ -37,14 +37,14 @@ public class TaskController {
 
     @Transactional
     @PostMapping("/update")
-    public void updateTask(@RequestParam(value = "id") Long id, Task task) {
-        tasksRepository.save(task);
+    public Task updateTask(@RequestParam(value = "id") Long id, Task task) {
+        return tasksRepository.save(task);
     }
 
     @Transactional
     @PostMapping("/done")
-    public void makeTaskDone(@RequestParam(value = "id") Long id, Task task) {
+    public Task makeTaskDone(@RequestParam(value = "id") Long id, Task task) {
         task.setDone(true);
-        tasksRepository.save(task);
+        return tasksRepository.save(task);
     }
 }
