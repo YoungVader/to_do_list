@@ -43,7 +43,7 @@ public class TaskController {
 
     @Transactional
     @PostMapping("/done")
-    public Task makeTaskDone(@RequestParam(value = "id") Long id, Task task) {
+    public Task setTaskDone(@RequestParam(value = "id") Long id, Task task) {
         task.setDone(true);
         return tasksRepository.save(task);
     }
