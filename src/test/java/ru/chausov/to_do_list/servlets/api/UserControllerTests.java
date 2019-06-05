@@ -24,14 +24,23 @@ public class UserControllerTests  {
 
     @Test
     public void addUserTest() {
-        User user = User.builder().name("TestUserName").lastName("TestUserLastName").build();
+        User userToAdd = new User();
 
-        long countBefore = userController.getUsersRepository().count();
+        User addedUser = userController.addUser(0L, userToAdd);
 
-        userController.addUser(0L, user);
+        Assert.assertEquals(userToAdd, addedUser);
+    }
 
-        long countAfter = userController.getUsersRepository().count();
+    @Test
+    public void updateUserTest() {
+        User userToUpdate = new User();
 
-        Assert.assertEquals(countBefore + 1, countAfter);
+        userController.addUser(0L, userToUpdate);
+
+        User updatedUser = userController.updateUser(userToUpdate.getId(),
+                User.builder().name("TestName").build());
+
+        Assert.assertNotNull(updatedUser);
+        Assert.assertNotEquals(updatedUser.getName(), userToUpdate.getName());
     }
 }
