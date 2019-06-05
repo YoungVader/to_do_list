@@ -50,7 +50,7 @@ public class VisitsRepositoryTests {
 
         long countBefore = visitsRepository.count();
 
-        visitsRepository.delete(visit);
+        visitsRepository.deleteById(visit.getId());
 
         long countAfter = visitsRepository.count();
 

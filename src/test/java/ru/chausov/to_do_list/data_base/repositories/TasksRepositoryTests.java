@@ -49,7 +49,7 @@ public class TasksRepositoryTests {
 
         long countBefore = tasksRepository.count();
 
-        tasksRepository.delete(task);
+        tasksRepository.deleteById(task.getId());
 
         long countAfter = tasksRepository.count();
 

@@ -20,7 +20,6 @@ public class UserControllerTests  {
     @Test
     public void contextLoads() {
         Assert.assertNotNull(userController);
-        Assert.assertNotNull(userController.getUsersRepository());
     }
 
     @Test

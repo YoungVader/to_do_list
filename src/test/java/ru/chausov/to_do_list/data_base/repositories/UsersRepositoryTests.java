@@ -49,7 +49,7 @@ public class UsersRepositoryTests {
 
         long countBefore = usersRepository.count();
 
-        usersRepository.delete(user);
+        usersRepository.deleteById(user.getId());
 
         long countAfter = usersRepository.count();
 
