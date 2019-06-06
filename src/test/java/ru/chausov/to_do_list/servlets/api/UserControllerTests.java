@@ -17,7 +17,7 @@ public class UserControllerTests  {
     @Autowired
     private UserController userController;
 
-    @Test
+    @Test // не нужен
     public void contextLoads() {
         Assert.assertNotNull(userController);
     }

@@ -15,7 +15,7 @@ public class TaskControllerTests {
     @Autowired
     TaskController taskController;
 
-    @Test
+    @Test // не нужен
     public void contextLoads() {
         Assert.assertNotNull(taskController);
     }
@@ -35,7 +35,7 @@ public class TaskControllerTests {
     public void updateTaskTest() {
         Task taskToUpdate = new Task();
 
-        taskController.addTask(0L, taskToUpdate);
+        taskController.addTask(0L, taskToUpdate); // можно через taskRepository
 
         Task updatedTask = taskController.updateTask(taskToUpdate.getId(),
                                             Task.builder().name("TestName").build());
@@ -48,7 +48,7 @@ public class TaskControllerTests {
     public void setTaskDoneTest() {
         Task taskToSetDone = new Task();
 
-        taskController.addTask(0L, taskToSetDone);
+        taskController.addTask(0L, taskToSetDone); // можно через taskRepository
 
         Assert.assertNotEquals(true, taskToSetDone.isDone());
 
@@ -56,6 +56,6 @@ public class TaskControllerTests {
                 taskToSetDone);
 
         Assert.assertNotNull(setDoneTask);
-        Assert.assertEquals(true, setDoneTask.isDone());
+        Assert.assertEquals(true, setDoneTask.isDone()); // assertTrue
     }
 }

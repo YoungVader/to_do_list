@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @Transactional
-    @PostMapping("/add")
+    @PostMapping("/add") // Нужен ли id?
     public User addUser(@RequestParam(value = "id", required = false) Long id, User user) {
         return usersRepository.save(user);
     }
@@ -37,7 +37,7 @@ public class UserController {
     }
 
     @Transactional
-    @PostMapping("/update")
+    @PostMapping("/update") // Нужен ли id?
     public User updateUser(@RequestParam(value = "id") Long id, User user) {
         return usersRepository.save(user);
     }

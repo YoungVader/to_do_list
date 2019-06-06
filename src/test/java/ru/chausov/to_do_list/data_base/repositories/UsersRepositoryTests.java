@@ -15,7 +15,7 @@ public class UsersRepositoryTests {
     @Autowired
     private UsersRepository usersRepository;
 
-    @Test
+    @Test // не нужен
     public void contextLoads() {
         Assert.assertNotNull(usersRepository);
     }

@@ -24,7 +24,7 @@ public class TaskController {
     }
 
     @Transactional
-    @PostMapping("/add")
+    @PostMapping("/add") // Нужен ли id?
     public Task addTask(@RequestParam(value = "id", required = false) Long id, Task task) {
         return tasksRepository.save(task);
     }
@@ -36,13 +36,13 @@ public class TaskController {
     }
 
     @Transactional
-    @PostMapping("/update")
+    @PostMapping("/update") // посмотри @PathVariable
     public Task updateTask(@RequestParam(value = "id") Long id, Task task) {
         return tasksRepository.save(task);
     }
 
     @Transactional
-    @PostMapping("/done")
+    @PostMapping("/done") // посмотри @PathVariable
     public Task setTaskDone(@RequestParam(value = "id") Long id, Task task) {
         task.setDone(true);
         return tasksRepository.save(task);

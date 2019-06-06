@@ -15,7 +15,8 @@ public class TasksRepositoryTests {
     @Autowired
     private TasksRepository tasksRepository;
 
-    @Test
+
+    @Test // не нужен
     public void contextLoads() {
         Assert.assertNotNull(tasksRepository);
     }
@@ -29,7 +30,8 @@ public class TasksRepositoryTests {
         Assert.assertEquals(savedTask, taskToSave);
     }
 
-    @Test
+
+    @Test // нет теста на то, если задачи нет.
     public void findTest() {
         Task taskToFind = new Task();
 

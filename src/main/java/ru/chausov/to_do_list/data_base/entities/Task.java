@@ -24,6 +24,8 @@ public class Task {
     private Long id; //how to make final to get through might be uninitialised?
     private String name;
     private String description;
+
+    // по факту ForeignKey, смотри @OneToMany
     private Long userId; //how to make final to get through might be uninitialised?
     private LocalDateTime receivedDate;
     private LocalDateTime toBeDone;
