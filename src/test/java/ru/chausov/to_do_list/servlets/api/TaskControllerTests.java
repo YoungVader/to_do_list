@@ -25,7 +25,7 @@ public class TaskControllerTests {
         Task taskToAdd = new Task();
 
         taskToAdd.setDescription("TestDescription");
-        Task addedTask = taskController.addTask(0L, taskToAdd);
+        Task addedTask = taskController.addTask(taskToAdd);
 
         Assert.assertEquals(taskToAdd, addedTask);
         Assert.assertEquals(taskToAdd.getDescription(), addedTask.getDescription());
@@ -35,7 +35,7 @@ public class TaskControllerTests {
     public void updateTaskTest() {
         Task taskToUpdate = new Task();
 
-        taskController.addTask(0L, taskToUpdate);
+        taskController.addTask(taskToUpdate);
 
         Task updatedTask = taskController.updateTask(taskToUpdate.getId(),
                                             Task.builder().name("TestName").build());
@@ -48,7 +48,7 @@ public class TaskControllerTests {
     public void setTaskDoneTest() {
         Task taskToSetDone = new Task();
 
-        taskController.addTask(0L, taskToSetDone);
+        taskController.addTask(taskToSetDone);
 
         Assert.assertNotEquals(true, taskToSetDone.isDone());
 

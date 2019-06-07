@@ -8,6 +8,8 @@ import ru.chausov.to_do_list.data_base.types.Gender;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Data
@@ -26,4 +28,7 @@ public class User {
     private Gender gender;
     private String address;
     private String company;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final Set<Task> tasks = new HashSet<>();
+
 }

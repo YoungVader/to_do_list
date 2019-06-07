@@ -25,19 +25,19 @@ public class TaskController {
 
     @Transactional
     @PostMapping("/add")
-    public Task addTask(@RequestParam(value = "id", required = false) Long id, Task task) {
+    public Task addTask(Task task) {
         return tasksRepository.save(task);
     }
 
     @Transactional
     @PostMapping("/delete")
-    public void deleteTask(@RequestParam(value = "id") Long id) {
+    public void deleteTask(@PathVariable(value = "id") Long id) {
         tasksRepository.deleteById(id);
     }
 
     @Transactional
     @PostMapping("/update")
-    public Task updateTask(@RequestParam(value = "id") Long id, Task task) {
+    public Task updateTask(@PathVariable(value = "id") Long id, Task task) {
         return tasksRepository.save(task);
     }
 

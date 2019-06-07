@@ -26,7 +26,7 @@ public class UserControllerTests  {
     public void addUserTest() {
         User userToAdd = new User();
 
-        User addedUser = userController.addUser(0L, userToAdd);
+        User addedUser = userController.addUser(userToAdd);
 
         Assert.assertEquals(userToAdd, addedUser);
     }
@@ -35,7 +35,7 @@ public class UserControllerTests  {
     public void updateUserTest() {
         User userToUpdate = new User();
 
-        userController.addUser(0L, userToUpdate);
+        userController.addUser(userToUpdate);
 
         User updatedUser = userController.updateUser(userToUpdate.getId(),
                 User.builder().name("TestName").build());

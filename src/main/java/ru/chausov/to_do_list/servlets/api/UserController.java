@@ -26,19 +26,19 @@ public class UserController {
 
     @Transactional
     @PostMapping("/add")
-    public User addUser(@RequestParam(value = "id", required = false) Long id, User user) {
+    public User addUser(User user) {
         return usersRepository.save(user);
     }
 
     @Transactional
     @PostMapping("/delete")
-    public void deleteUser(@RequestParam(value = "id") Long id) {
+    public void deleteUser(@PathVariable(value = "id") Long id) {
         usersRepository.deleteById(id);
     }
 
     @Transactional
     @PostMapping("/update")
-    public User updateUser(@RequestParam(value = "id") Long id, User user) {
+    public User updateUser(@PathVariable(value = "id") Long id, User user) {
         return usersRepository.save(user);
     }
 }
