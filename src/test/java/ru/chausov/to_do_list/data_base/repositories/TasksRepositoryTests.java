@@ -20,15 +20,7 @@ public class TasksRepositoryTests {
 
     @Test
     public void saveTest() {
-        User user = new User();
-
-        usersRepository.save(user);
-
-        Task taskToSave = Task.builder().user(user).build();
-
-        user.getTasks().add(taskToSave);
-
-        usersRepository.save(user);
+        Task taskToSave = new Task();
 
         Task savedTask = tasksRepository.save(taskToSave);
 
@@ -37,13 +29,7 @@ public class TasksRepositoryTests {
 
     @Test
     public void findTest() {
-        User user = new User();
-
-        usersRepository.save(user);
-
-        Task taskToFind = Task.builder().user(user).build();
-
-        user.getTasks().add(taskToFind);
+        Task taskToFind = new Task();
 
         tasksRepository.save(taskToFind);
 

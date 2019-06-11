@@ -28,7 +28,7 @@ public class User {
     private Gender gender;
     private String address;
     private String company;
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private final Set<Task> tasks = new HashSet<>();
 
 }
