@@ -17,11 +17,6 @@ public class VisitsRepositoryTests {
     private VisitsRepository visitsRepository;
 
     @Test
-    public void contextLoads() {
-        Assert.assertNotNull(visitsRepository);
-    }
-
-    @Test
     public void saveTest() {
         Visit visitToSave = new Visit();
 

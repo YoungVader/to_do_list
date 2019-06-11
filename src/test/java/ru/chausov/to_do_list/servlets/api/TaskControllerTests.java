@@ -16,11 +16,6 @@ public class TaskControllerTests {
     TaskController taskController;
 
     @Test
-    public void contextLoads() {
-        Assert.assertNotNull(taskController);
-    }
-
-    @Test
     public void addTaskTest() {
         Task taskToAdd = new Task();
 
@@ -56,6 +51,6 @@ public class TaskControllerTests {
                 taskToSetDone);
 
         Assert.assertNotNull(setDoneTask);
-        Assert.assertEquals(true, setDoneTask.isDone());
+        Assert.assertTrue(setDoneTask.isDone());
     }
 }

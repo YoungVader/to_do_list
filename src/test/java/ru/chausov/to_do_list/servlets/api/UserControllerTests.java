@@ -18,11 +18,6 @@ public class UserControllerTests  {
     private UserController userController;
 
     @Test
-    public void contextLoads() {
-        Assert.assertNotNull(userController);
-    }
-
-    @Test
     public void addUserTest() {
         User userToAdd = new User();
 
