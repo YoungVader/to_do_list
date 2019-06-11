@@ -16,11 +16,6 @@ public class UsersRepositoryTests {
     private UsersRepository usersRepository;
 
     @Test
-    public void contextLoads() {
-        Assert.assertNotNull(usersRepository);
-    }
-
-    @Test
     public void saveTest() {
         User userToSave = new User();
 

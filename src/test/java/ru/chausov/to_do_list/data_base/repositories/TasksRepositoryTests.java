@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.chausov.to_do_list.data_base.entities.Task;
+import ru.chausov.to_do_list.data_base.entities.User;
 
 
 @RunWith(SpringRunner.class)
@@ -14,15 +15,20 @@ import ru.chausov.to_do_list.data_base.entities.Task;
 public class TasksRepositoryTests {
     @Autowired
     private TasksRepository tasksRepository;
-
-    @Test
-    public void contextLoads() {
-        Assert.assertNotNull(tasksRepository);
-    }
+    @Autowired
+    private UsersRepository usersRepository;
 
     @Test
     public void saveTest() {
-        Task taskToSave = new Task();
+        User user = new User();
+
+        usersRepository.save(user);
+
+        Task taskToSave = Task.builder().user(user).build();
+
+        user.getTasks().add(taskToSave);
+
+        usersRepository.save(user);
 
         Task savedTask = tasksRepository.save(taskToSave);
 
@@ -31,7 +37,13 @@ public class TasksRepositoryTests {
 
     @Test
     public void findTest() {
-        Task taskToFind = new Task();
+        User user = new User();
+
+        usersRepository.save(user);
+
+        Task taskToFind = Task.builder().user(user).build();
+
+        user.getTasks().add(taskToFind);
 
         tasksRepository.save(taskToFind);
 
