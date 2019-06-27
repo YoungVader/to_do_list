@@ -1,7 +1,7 @@
-package ru.chausov.to_do_list.data_base.repositories;
+package ru.chausov.to_do_list.data_base.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.chausov.to_do_list.data_base.entities.Visit;
+import ru.chausov.to_do_list.data_base.entity.Visit;
 
 
 public interface VisitsRepository extends CrudRepository<Visit, Long> {

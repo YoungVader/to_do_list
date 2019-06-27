@@ -1,4 +1,4 @@
-package ru.chausov.to_do_list.data_base.entities;
+package ru.chausov.to_do_list.data_base.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

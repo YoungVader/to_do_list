@@ -1,11 +1,11 @@
-package ru.chausov.to_do_list.servlets.api;
+package ru.chausov.to_do_list.servlet.api;
 
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.chausov.to_do_list.data_base.entities.User;
-import ru.chausov.to_do_list.data_base.repositories.UsersRepository;
+import ru.chausov.to_do_list.data_base.entity.User;
+import ru.chausov.to_do_list.data_base.repository.UsersRepository;
 
 import javax.transaction.Transactional;
 

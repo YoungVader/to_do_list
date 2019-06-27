@@ -1,4 +1,4 @@
-package ru.chausov.to_do_list.servlets.api;
+package ru.chausov.to_do_list.servlet.api;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.chausov.to_do_list.data_base.entities.Task;
+import ru.chausov.to_do_list.data_base.entity.Task;
 
 
 @RunWith(SpringRunner.class)

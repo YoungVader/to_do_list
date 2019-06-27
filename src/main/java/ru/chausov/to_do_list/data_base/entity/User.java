@@ -1,10 +1,10 @@
-package ru.chausov.to_do_list.data_base.entities;
+package ru.chausov.to_do_list.data_base.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.chausov.to_do_list.data_base.types.Gender;
+import ru.chausov.to_do_list.data_base.type.Gender;
 
 import javax.persistence.*;
 import java.time.LocalDate;
