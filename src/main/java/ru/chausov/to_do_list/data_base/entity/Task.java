@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class Task {
     @Id
     @GeneratedValue
-    private Long id; //how to make final to get through might be uninitialised?
+    private Long id;
     private String name;
     private String description;
     private LocalDateTime receivedDate;

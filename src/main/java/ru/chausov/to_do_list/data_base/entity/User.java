@@ -21,7 +21,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue
-    private Long id; //how to make final to get through might be uninitialised?
+    private Long id;
     private String name;
     private String lastName;
     private LocalDate birthDate;
