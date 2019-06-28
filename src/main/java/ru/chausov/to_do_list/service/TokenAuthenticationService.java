@@ -1,4 +1,4 @@
-package ru.chausov.service;
+package ru.chausov.to_do_list.service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

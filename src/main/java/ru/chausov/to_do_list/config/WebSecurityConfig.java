@@ -1,4 +1,4 @@
-package ru.chausov.config;
+package ru.chausov.to_do_list.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,8 +14,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import ru.chausov.to_do_list.filter.JWTAuthenticationFilter;
 import ru.chausov.to_do_list.filter.JWTLoginFilter;
 
+import java.util.logging.Logger;
+
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    Logger logger = Logger.getLogger(WebSecurityConfig.class.getName());
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
@@ -24,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/login").permitAll() //
                 .antMatchers(HttpMethod.GET, "/login").permitAll() // For Test on Browser
                 // Need authentication.
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
                 //
                 .and()
                 //
@@ -36,6 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Add Filter 2 - JWTAuthenticationFilter
                 //
                 .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+        logger.info("config1!!!!!!!!!!!!!!!!!!");
     }
 
     @Bean
@@ -68,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Spring auto add ROLE_
         // mngConfig.withUser("tom").password("123").roles("USER");
         // mngConfig.withUser("jerry").password("123").roles("USER");
-
+        logger.info("config2!!!!!!!!!!!!!!!!!!");
     }
 
 }

@@ -3,7 +3,7 @@ package ru.chausov.to_do_list.filter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
-import ru.chausov.service.TokenAuthenticationService;
+import ru.chausov.to_do_list.service.TokenAuthenticationService;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
