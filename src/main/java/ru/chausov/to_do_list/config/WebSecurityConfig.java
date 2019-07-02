@@ -56,25 +56,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         String password = "123";
 
-        String encrytedPassword = this.passwordEncoder().encode(password);
-        System.out.println("Encoded password of 123=" + encrytedPassword);
+        String encryptedPassword = this.passwordEncoder().encode(password);
+        System.out.println("Encoded password of 123=" + encryptedPassword);
 
-        InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder> //
+        InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder>
                 mngConfig = auth.inMemoryAuthentication();
 
-        // Defines 2 users, stored in memory.
-        // ** Spring BOOT >= 2.x (Spring Security 5.x)
-        // Spring auto add ROLE_
-        UserDetails u1 = User.withUsername("tom").password(encrytedPassword).roles("USER").build();
-        UserDetails u2 = User.withUsername("jerry").password(encrytedPassword).roles("USER").build();
+        UserDetails u1 = User.withUsername("tom").password(encryptedPassword).roles("USER").build();
+        UserDetails u2 = User.withUsername("jerry").password(encryptedPassword).roles("USER").build();
 
         mngConfig.withUser(u1);
         mngConfig.withUser(u2);
 
-        // If Spring BOOT < 2.x (Spring Security 4.x)):
-        // Spring auto add ROLE_
-        // mngConfig.withUser("tom").password("123").roles("USER");
-        // mngConfig.withUser("jerry").password("123").roles("USER");
         logger.info("config2!!!!!!!!!!!!!!!!!!");
     }
 

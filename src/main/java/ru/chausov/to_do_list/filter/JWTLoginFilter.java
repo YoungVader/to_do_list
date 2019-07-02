@@ -24,7 +24,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException, IOException, ServletException {
+            throws AuthenticationException {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -33,16 +33,16 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
         System.out.println();
 
         return getAuthenticationManager()
-                .authenticate(new UsernamePasswordAuthenticationToken(username, password, Collections.emptyList()));
+                .authenticate(new UsernamePasswordAuthenticationToken(username, password,
+                        Collections.emptyList()));
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
-                                            Authentication authResult) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+                                            FilterChain chain, Authentication authResult) {
 
         System.out.println("JWTLoginFilter.successfulAuthentication:");
 
-        // Write Authorization to Headers of Response.
         TokenAuthenticationService.addAuthentication(response, authResult.getName());
 
         String authorizationString = response.getHeader("Authorization");
