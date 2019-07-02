@@ -18,7 +18,7 @@ public class UserControllerTests  {
     private UserController userController;
 
     @Test
-    public void addUserTest() {
+    public void addUserTest() throws Exception {
         User userToAdd = new User();
 
         User addedUser = userController.addUser(userToAdd);
@@ -27,7 +27,7 @@ public class UserControllerTests  {
     }
 
     @Test
-    public void updateUserTest() {
+    public void updateUserTest() throws Exception {
         User userToUpdate = new User();
 
         userController.addUser(userToUpdate);
