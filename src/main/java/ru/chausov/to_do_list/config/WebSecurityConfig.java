@@ -14,13 +14,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import ru.chausov.to_do_list.filter.JWTAuthenticationFilter;
 import ru.chausov.to_do_list.filter.JWTLoginFilter;
 
-import java.util.logging.Logger;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    Logger logger = Logger.getLogger(WebSecurityConfig.class.getName());
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
@@ -41,8 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Add Filter 2 - JWTAuthenticationFilter
                 //
                 .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-
-        logger.info("config1!!!!!!!!!!!!!!!!!!");
     }
 
     @Bean
@@ -67,8 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         mngConfig.withUser(u1);
         mngConfig.withUser(u2);
-
-        logger.info("config2!!!!!!!!!!!!!!!!!!");
     }
 
 }
