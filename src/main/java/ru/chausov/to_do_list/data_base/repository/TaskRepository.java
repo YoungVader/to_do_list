@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import ru.chausov.to_do_list.data_base.entity.Task;
 
 
-public interface TasksRepository extends CrudRepository<Task, Long> {
+public interface TaskRepository extends CrudRepository<Task, Long> {
 }

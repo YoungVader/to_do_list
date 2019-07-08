@@ -4,5 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 import ru.chausov.to_do_list.data_base.entity.User;
 
 
-public interface UsersRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
+    User findByUsername(String username);
 }

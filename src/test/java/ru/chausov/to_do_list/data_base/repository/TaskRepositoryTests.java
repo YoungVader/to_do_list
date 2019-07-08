@@ -11,17 +11,17 @@ import ru.chausov.to_do_list.data_base.entity.Task;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TasksRepositoryTests {
+public class TaskRepositoryTests {
     @Autowired
-    private TasksRepository tasksRepository;
+    private TaskRepository taskRepository;
     @Autowired
-    private UsersRepository usersRepository;
+    private UserRepository usersRepository;
 
     @Test
     public void saveTest() {
         Task taskToSave = new Task();
 
-        Task savedTask = tasksRepository.save(taskToSave);
+        Task savedTask = taskRepository.save(taskToSave);
 
         Assert.assertEquals(savedTask, taskToSave);
     }
@@ -30,9 +30,9 @@ public class TasksRepositoryTests {
     public void findTest() {
         Task taskToFind = new Task();
 
-        tasksRepository.save(taskToFind);
+        taskRepository.save(taskToFind);
 
-        Task foundTask = tasksRepository.findById(taskToFind.getId()).get();
+        Task foundTask = taskRepository.findById(taskToFind.getId()).get();
 
         Assert.assertEquals(taskToFind, foundTask);
     }
@@ -42,13 +42,13 @@ public class TasksRepositoryTests {
     public void deleteTest() {
         Task task = new Task();
 
-        tasksRepository.save(task);
+        taskRepository.save(task);
 
-        long countBefore = tasksRepository.count();
+        long countBefore = taskRepository.count();
 
-        tasksRepository.deleteById(task.getId());
+        taskRepository.deleteById(task.getId());
 
-        long countAfter = tasksRepository.count();
+        long countAfter = taskRepository.count();
 
         Assert.assertEquals(countBefore - 1, countAfter);
     }

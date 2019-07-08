@@ -11,15 +11,15 @@ import ru.chausov.to_do_list.data_base.entity.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UsersRepositoryTests {
+public class UserRepositoryTests {
     @Autowired
-    private UsersRepository usersRepository;
+    private UserRepository userRepository;
 
     @Test
     public void saveTest() {
         User userToSave = new User();
 
-        User savedUser =  usersRepository.save(userToSave);
+        User savedUser =  userRepository.save(userToSave);
 
         Assert.assertEquals(savedUser, userToSave);
     }
@@ -28,9 +28,9 @@ public class UsersRepositoryTests {
     public void findTest() {
         User userToFind = new User();
 
-        usersRepository.save(userToFind);
+        userRepository.save(userToFind);
 
-        User foundUser = usersRepository.findById(userToFind.getId()).get();
+        User foundUser = userRepository.findById(userToFind.getId()).get();
 
         Assert.assertEquals(userToFind, foundUser);
     }
@@ -40,13 +40,13 @@ public class UsersRepositoryTests {
     public void deleteTest() {
         User user = new User();
 
-        usersRepository.save(user);
+        userRepository.save(user);
 
-        long countBefore = usersRepository.count();
+        long countBefore = userRepository.count();
 
-        usersRepository.deleteById(user.getId());
+        userRepository.deleteById(user.getId());
 
-        long countAfter = usersRepository.count();
+        long countAfter = userRepository.count();
 
         Assert.assertEquals(countBefore - 1, countAfter);
     }

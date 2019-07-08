@@ -11,16 +11,16 @@ import ru.chausov.to_do_list.data_base.entity.Visit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VisitsRepositoryTests {
+public class VisitRepositoryTests {
 
     @Autowired
-    private VisitsRepository visitsRepository;
+    private VisitRepository visitRepository;
 
     @Test
     public void saveTest() {
         Visit visitToSave = new Visit();
 
-        Visit savedVisit = visitsRepository.save(visitToSave);
+        Visit savedVisit = visitRepository.save(visitToSave);
 
         Assert.assertEquals(savedVisit, visitToSave);
     }
@@ -29,9 +29,9 @@ public class VisitsRepositoryTests {
     public void findTest() {
         Visit visitToFind = new Visit();
 
-        visitsRepository.save(visitToFind);
+        visitRepository.save(visitToFind);
 
-        Visit foundVisit = visitsRepository.findById(visitToFind.getId()).get();
+        Visit foundVisit = visitRepository.findById(visitToFind.getId()).get();
 
         Assert.assertEquals(visitToFind, foundVisit);
     }
@@ -41,13 +41,13 @@ public class VisitsRepositoryTests {
     public void deleteTest() {
         Visit visit = new Visit();
 
-        visitsRepository.save(visit);
+        visitRepository.save(visit);
 
-        long countBefore = visitsRepository.count();
+        long countBefore = visitRepository.count();
 
-        visitsRepository.deleteById(visit.getId());
+        visitRepository.deleteById(visit.getId());
 
-        long countAfter = visitsRepository.count();
+        long countAfter = visitRepository.count();
 
         Assert.assertEquals(countBefore - 1, countAfter);
     }

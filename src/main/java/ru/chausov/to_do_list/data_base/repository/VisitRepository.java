@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import ru.chausov.to_do_list.data_base.entity.Visit;
 
 
-public interface VisitsRepository extends CrudRepository<Visit, Long> {
+public interface VisitRepository extends CrudRepository<Visit, Long> {
 }

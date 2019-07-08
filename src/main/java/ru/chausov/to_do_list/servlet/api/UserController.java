@@ -3,15 +3,9 @@ package ru.chausov.to_do_list.servlet.api;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.provisioning.InMemoryUserDetailsManagerConfigurer;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.chausov.to_do_list.data_base.entity.User;
-import ru.chausov.to_do_list.data_base.repository.UsersRepository;
+import ru.chausov.to_do_list.data_base.repository.UserRepository;
 
 import javax.transaction.Transactional;
 
@@ -22,12 +16,12 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UsersRepository usersRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     @GetMapping("/table")
     public Iterable<User> getUsers() {
-        return usersRepository.findAll();
+        return userRepository.findAll();
     }
 
     @Transactional
@@ -35,36 +29,18 @@ public class UserController {
     public User addUser(User user) throws Exception {
 //        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().
 //                getAuthentication().getDetails();
-        AuthenticationManagerBuilder auth = (AuthenticationManagerBuilder) SecurityContextHolder
-        .getContext().getAuthentication();
-
-        InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder>
-                mngConfig = auth.inMemoryAuthentication();
-
-        String password = "123";
-
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-        String encryptedPassword = passwordEncoder.encode(password);
-        System.out.println("Encoded password of 123=" + encryptedPassword);
-
-        UserDetails newUser = org.springframework.security.core.userdetails.User.
-                withUsername("user" + user.getId()).password(encryptedPassword).roles("USER").build();
-
-        mngConfig.withUser(newUser);
-
-        return usersRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Transactional
     @PostMapping("/delete")
     public void deleteUser(@PathVariable(value = "id") Long id) {
-        usersRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Transactional
     @PostMapping("/update")
     public User updateUser(@PathVariable(value = "id") Long id, User user) {
-        return usersRepository.save(user);
+        return userRepository.save(user);
     }
 }

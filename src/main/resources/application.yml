@@ -8,7 +8,13 @@ spring:
     password: 12345678
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
     hibernate:
       ddl-auto: update
+  mustache:
+    expose-request-attributes: true
 server:
   port: 80

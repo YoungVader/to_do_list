@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.chausov.to_do_list.data_base.entity.Visit;
-import ru.chausov.to_do_list.data_base.repository.VisitsRepository;
+import ru.chausov.to_do_list.data_base.repository.VisitRepository;
 
 
 import javax.transaction.Transactional;
@@ -15,11 +15,11 @@ import javax.transaction.Transactional;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class VisitsController {
-    private final VisitsRepository visitsRepository;
+    private final VisitRepository visitRepository;
 
     @Transactional
     @GetMapping("/visits")
     public Iterable<Visit> getVisits() {
-        return visitsRepository.findAll();
+        return visitRepository.findAll();
     }
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>To do list registration</title>
+</head>
+<body>
+<p>Add new user</p>
+<p>{{#message}}
+{{message}}
+    {{/message}}</p>
+<form action="/registration" method="post">
+    <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><label> Name : <input type="text" name="name"/> </label></div>
+    <div><label> Last Name : <input type="text" name="lastName"/> </label></div>
+    <!--   <div><label>Gender : <br>
+    <form action="Gender">
+        <input type="radio" name="gender" value="male"> Male<br>
+        <input type="radio" name="gender" value="female"> Female
+    </form></label></div>-->
+    <div><label> Company : <input type="text" name="company"/> </label></div>
+    <div><label> Birth Date : <input type="date" name="birthDate"/> </label></div>
+    <div><label> Address : <input type="text" name="address"/> </label></div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <div><input type="submit" value="Sign In"/></div>
+</form>
+</body>
+</html>
