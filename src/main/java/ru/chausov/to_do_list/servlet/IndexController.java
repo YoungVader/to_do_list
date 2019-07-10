@@ -1,12 +1,10 @@
 package ru.chausov.to_do_list.servlet;
 
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.chausov.to_do_list.data_base.entity.Visit;
 import ru.chausov.to_do_list.data_base.repository.VisitRepository;
-
 
 import java.time.LocalDateTime;
 

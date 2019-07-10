@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.chausov.to_do_list.data_base.type.Gender;
 import ru.chausov.to_do_list.data_base.type.Role;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,8 +26,8 @@ public class User {
     private boolean active;
     private String name;
     private String lastName;
-    private LocalDate birthDate;
-    private Gender gender;
+    private String birthDate;
+    private String gender;
     private String address;
     private String company;
 
