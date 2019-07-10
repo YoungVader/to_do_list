@@ -24,13 +24,13 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @Transactional
-    @PostMapping("/add")
-    public User addUser(User user) throws Exception {
-//        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().
-//                getAuthentication().getDetails();
-        return userRepository.save(user);
-    }
+//    @Transactional
+//    @PostMapping("/add")
+//    public User addUser(User user) throws Exception {
+////        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().
+////                getAuthentication().getDetails();
+//        return userRepository.save(user);
+//    }
 
     @Transactional
     @PostMapping("/delete")
