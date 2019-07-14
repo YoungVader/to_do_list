@@ -3,6 +3,9 @@ package ru.chausov.to_do_list.servlet.api;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import ru.chausov.to_do_list.data_base.entity.User;
 import ru.chausov.to_do_list.data_base.repository.UserRepository;
@@ -38,9 +41,38 @@ public class UserController {
         userRepository.deleteById(id);
     }
 
+//    @Transactional
+//    @PostMapping("/update")
+//    public User updateUser(@PathVariable(value = "id") Long id, User user) {
+//        return userRepository.save(user);
+//    }
+
     @Transactional
     @PostMapping("/update")
-    public User updateUser(@PathVariable(value = "id") Long id, User user) {
-        return userRepository.save(user);
+    public User updateUser(User user) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        User foundUser = userRepository.findByUsername(auth.getName());
+
+        if (user.getName() != null)
+            foundUser.setName(user.getName());
+
+        if (user.getLastName() != null)
+            foundUser.setLastName(user.getLastName());
+
+        if (user.getBirthDate() != null)
+            foundUser.setBirthDate(user.getBirthDate());
+
+        if (user.getGender() != null)
+            foundUser.setGender(user.getGender());
+
+        if (user.getCompany() != null)
+            foundUser.setCompany(user.getCompany());
+
+        if (user.getAddress() != null)
+            foundUser.setAddress(user.getAddress());
+
+        return userRepository.save(foundUser);
     }
 }

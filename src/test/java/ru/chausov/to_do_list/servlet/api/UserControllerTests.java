@@ -26,16 +26,16 @@ public class UserControllerTests  {
 //        Assert.assertEquals(userToAdd, addedUser);
 //    }
 
-    @Test
-    public void updateUserTest() throws Exception {
-        User userToUpdate = new User();
-
-        userController.updateUser(userToUpdate.getId(), userToUpdate);
-
-        User updatedUser = userController.updateUser(userToUpdate.getId(),
-                User.builder().name("TestName").build());
-
-        Assert.assertNotNull(updatedUser);
-        Assert.assertNotEquals(updatedUser.getName(), userToUpdate.getName());
-    }
+//    @Test
+//    public void updateUserTest() throws Exception {
+//        User userToUpdate = new User();
+//
+//        userController.updateUser(userToUpdate.getId(), userToUpdate);
+//
+//        User updatedUser = userController.updateUser(userToUpdate.getId(),
+//                User.builder().name("TestName").build());
+//
+//        Assert.assertNotNull(updatedUser);
+//        Assert.assertNotEquals(updatedUser.getName(), userToUpdate.getName());
+//    }
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>To do list profile editing</title>
+</head>
+<body>
+<p>Profile editing</p>
+
+<form action="/api/users/update" method="post">
+    <div><label> Name : <input type="text" name="name" value={name} /> </label></div>
+    <div><label> Last Name : <input type="text" name="lastName" value={last_name} /> </label></div>
+    <div><label> Gender : <br>
+        <input type="radio" name="gender" value="male"> Male<br>
+        <input type="radio" name="gender" value="female"> Female
+    </label></div>
+    <div><label> Company : <input type="text" name="company"/> </label></div>
+    <div><label> Birth Date : <input type="date" name="birthDate"/> </label></div>
+    <div><label> Address : <input type="text" name="address"/> </label></div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <div><input type="submit" value="Sign In"/></div>
+</form>
+</body>
+</html>
