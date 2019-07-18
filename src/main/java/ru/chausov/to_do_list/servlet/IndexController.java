@@ -48,8 +48,12 @@ public class IndexController {
 
         User user = userRepository.findByUsername(auth.getName());
 
-        model.put("name", user.getName());
-        model.put("last_name", user.getLastName());
+        model.put("user", user);
+
+        if(user.getGender().equals("male"))
+            model.put("gender", false);
+        else if(user.getGender().equals("female"))
+            model.put("gender", true);
 
         return new ModelAndView("edit_profile", model);
     }

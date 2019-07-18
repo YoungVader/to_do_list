@@ -7,17 +7,23 @@
 <p>Profile editing</p>
 
 <form action="/api/users/update" method="post">
-    <div><label> Name : <input type="text" name="name" value={name} /> </label></div>
-    <div><label> Last Name : <input type="text" name="lastName" value={last_name} /> </label></div>
+    <div><label> Name : <input type="text" name="name" value="{{#user}}{{name}}{{/user}}" /> </label></div>
+    <div><label> Last Name : <input type="text" name="lastName" value="{{#user}}{{lastName}}{{/user}}" /> </label></div>
     <div><label> Gender : <br>
-        <input type="radio" name="gender" value="male"> Male<br>
-        <input type="radio" name="gender" value="female"> Female
+        {{#gender}}
+            <input type="radio" name="gender" value="male" > Male<br>
+            <input type="radio" name="gender" value="female" checked> Female
+        {{/gender}}
+        {{^gender}}
+            <input type="radio" name="gender" value="male" checked> Male<br>
+            <input type="radio" name="gender" value="female"> Female
+        {{/gender}}
     </label></div>
-    <div><label> Company : <input type="text" name="company"/> </label></div>
-    <div><label> Birth Date : <input type="date" name="birthDate"/> </label></div>
-    <div><label> Address : <input type="text" name="address"/> </label></div>
+    <div><label> Company : <input type="text" name="company" value="{{#user}}{{company}}{{/user}}" /> </label></div>
+    <div><label> Birth Date : <input type="date" name="birthDate" value="{{#user}}{{birthDate}}{{/user}}" /> </label></div>
+    <div><label> Address : <input type="text" name="address" value="{{#user}}{{address}}{{/user}}" /> </label></div>
     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-    <div><input type="submit" value="Sign In"/></div>
+    <div><input type="submit" value="Submit"/></div>
 </form>
 </body>
 </html>

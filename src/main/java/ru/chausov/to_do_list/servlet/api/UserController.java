@@ -1,16 +1,20 @@
 package ru.chausov.to_do_list.servlet.api;
 
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ru.chausov.to_do_list.data_base.entity.User;
 import ru.chausov.to_do_list.data_base.repository.UserRepository;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
+import java.util.Map;
 
 
 @Data
@@ -49,11 +53,11 @@ public class UserController {
 
     @Transactional
     @PostMapping("/update")
-    public User updateUser(User user) {
+    public ModelAndView updateUser(Principal authUser, User user, Map<String, Object> model) {
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        User foundUser = userRepository.findByUsername(auth.getName());
+        User foundUser = userRepository.findByUsername(authUser.getName());
 
         if (user.getName() != null)
             foundUser.setName(user.getName());
@@ -73,6 +77,8 @@ public class UserController {
         if (user.getAddress() != null)
             foundUser.setAddress(user.getAddress());
 
-        return userRepository.save(foundUser);
+        model.put("user", userRepository.save(foundUser));
+
+        return new ModelAndView("redirect:/index", model);
     }
 }
