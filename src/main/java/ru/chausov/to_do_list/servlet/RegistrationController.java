@@ -33,7 +33,8 @@ public class RegistrationController {
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
-        userRepository.save(user);
-        return new ModelAndView("redirect:/login");
+
+        model.put("user", userRepository.save(user));
+        return new ModelAndView("redirect:/login", model);
     }
 }

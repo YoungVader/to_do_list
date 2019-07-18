@@ -1,5 +1,6 @@
 package ru.chausov.to_do_list.data_base.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,9 +22,10 @@ public class Task {
     private Long id;
     private String name;
     private String description;
-    private LocalDateTime receivedDate;
-    private LocalDateTime toBeDone;
+    private String receivedDate;
+    private String toBeDone;
     private boolean done;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

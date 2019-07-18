@@ -11,6 +11,7 @@ import ru.chausov.to_do_list.data_base.entity.Visit;
 import ru.chausov.to_do_list.data_base.repository.UserRepository;
 import ru.chausov.to_do_list.data_base.repository.VisitRepository;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -43,10 +44,8 @@ public class IndexController {
     }
 
     @GetMapping("/edit/profile")
-    public ModelAndView editProfile(Map<String, Object> model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        User user = userRepository.findByUsername(auth.getName());
+    public ModelAndView editProfile(Principal authUser, Map<String, Object> model){
+        User user = userRepository.findByUsername(authUser.getName());
 
         model.put("user", user);
 
@@ -56,5 +55,14 @@ public class IndexController {
             model.put("gender", true);
 
         return new ModelAndView("edit_profile", model);
+    }
+
+    @GetMapping("/add/task")
+    public ModelAndView addTask(Principal authUser, Map<String, Object> model){
+        User user = userRepository.findByUsername(authUser.getName());
+
+        model.put("user", user);
+
+        return new ModelAndView("add_task", model);
     }
 }

@@ -4,10 +4,15 @@ package ru.chausov.to_do_list.servlet.api;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ru.chausov.to_do_list.data_base.entity.Task;
+import ru.chausov.to_do_list.data_base.entity.User;
 import ru.chausov.to_do_list.data_base.repository.TaskRepository;
+import ru.chausov.to_do_list.data_base.repository.UserRepository;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
+import java.util.Map;
 
 
 @RestController
@@ -16,6 +21,7 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class TaskController {
     private final TaskRepository taskRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     @GetMapping("/table")
@@ -25,8 +31,14 @@ public class TaskController {
 
     @Transactional
     @PostMapping("/add")
-    public Task addTask(Task task) {
-        return taskRepository.save(task);
+    public ModelAndView addTask(Principal authUser, Task task, Map<String, Object> model) {
+        User user = userRepository.findByUsername(authUser.getName());
+
+        task.setUser(user);
+
+        model.put("task", taskRepository.save(task));
+
+        return new ModelAndView("redirect:/index", model);
     }
 
     @Transactional
