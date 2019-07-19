@@ -1,5 +1,6 @@
 package ru.chausov.to_do_list.data_base.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,8 +32,9 @@ public class User {
     private String address;
     private String company;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private final Set<Task> tasks = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Task> tasks;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
