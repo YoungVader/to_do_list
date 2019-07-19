@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import ru.chausov.to_do_list.data_base.type.Role;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 
