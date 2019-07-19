@@ -1,4 +1,4 @@
-package ru.chausov.to_do_list.servlet.api;
+package ru.chausov.to_do_list.servlet;
 
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 @Data
 @RestController
-@RequestMapping("/api/users/")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
 

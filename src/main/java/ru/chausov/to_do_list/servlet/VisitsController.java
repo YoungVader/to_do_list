@@ -1,4 +1,4 @@
-package ru.chausov.to_do_list.servlet.api;
+package ru.chausov.to_do_list.servlet;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 @RequiredArgsConstructor
 public class VisitsController {
     private final VisitRepository visitRepository;

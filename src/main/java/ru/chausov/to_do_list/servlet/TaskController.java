@@ -1,4 +1,4 @@
-package ru.chausov.to_do_list.servlet.api;
+package ru.chausov.to_do_list.servlet;
 
 
 import lombok.Data;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @Data
-@RequestMapping("/api/tasks")
+@RequestMapping("/tasks")
 @RequiredArgsConstructor
 public class TaskController {
     private final TaskRepository taskRepository;
