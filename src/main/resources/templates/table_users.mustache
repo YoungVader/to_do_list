@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>To do list users</title>
+</head>
+<body>
+<table border="1">
+    <caption>Users</caption>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Last name</th>
+    <th>Gender</th>
+    <th>Company</th>
+    <th>Birth date</th>
+    <th>Address</th>
+    <ul>
+        {{#users}}
+            {{#.}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{lastName}}</td>
+                    <td>{{gender}}</td>
+                    <td>{{company}}</td>
+                    <td>{{birthDate}}</td>
+                    <td>{{address}}</td>
+                </tr>
+            {{/.}}
+        {{/users}}
+    </ul>
+</table>
+<br>
+<a href="/index">Back to main page</a>
+</body>
+</html>

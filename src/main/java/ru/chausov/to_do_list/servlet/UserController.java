@@ -1,12 +1,8 @@
 package ru.chausov.to_do_list.servlet;
 
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.chausov.to_do_list.data_base.entity.User;
@@ -27,8 +23,10 @@ public class UserController {
 
     @Transactional
     @GetMapping("/table")
-    public Iterable<User> getUsers() {
-        return userRepository.findAll();
+    public ModelAndView getUsers(Map<String, Object> model) {
+        model.put("users", userRepository.findAll());
+
+        return new ModelAndView("table_users", model);
     }
 
 //    @Transactional

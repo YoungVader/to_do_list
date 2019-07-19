@@ -12,6 +12,7 @@ import ru.chausov.to_do_list.data_base.repository.UserRepository;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 
@@ -25,8 +26,15 @@ public class TaskController {
 
     @Transactional
     @GetMapping("/table")
-    public Iterable<Task> getTasks() {
-        return taskRepository.findAll();
+    public ModelAndView getTasks(Principal authUser, Map<String, Object> model) {
+        User user = userRepository.findByUsername(authUser.getName());
+
+        if(user.getTasks().isEmpty())
+            model.put("message", "You haven't added any tasks yet!");
+        else
+            model.put("tasks", user.getTasks());
+
+        return new ModelAndView("table_tasks", model);
     }
 
     @Transactional

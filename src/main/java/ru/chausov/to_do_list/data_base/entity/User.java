@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import ru.chausov.to_do_list.data_base.type.Role;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -33,8 +35,8 @@ public class User {
     private String company;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private Set<Task> tasks;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks = new ArrayList<>();
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
