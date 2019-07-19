@@ -15,42 +15,42 @@ public class TaskControllerTests {
     @Autowired
     TaskController taskController;
 
-    @Test
-    public void addTaskTest() {
-        Task taskToAdd = new Task();
+//    @Test
+//    public void addTaskTest() {
+//        Task taskToAdd = new Task();
+//
+//        taskToAdd.setDescription("TestDescription");
+//        Task addedTask = taskController.addTask(taskToAdd);
+//
+//        Assert.assertEquals(taskToAdd, addedTask);
+//        Assert.assertEquals(taskToAdd.getDescription(), addedTask.getDescription());
+//    }
 
-        taskToAdd.setDescription("TestDescription");
-        Task addedTask = taskController.addTask(taskToAdd);
-
-        Assert.assertEquals(taskToAdd, addedTask);
-        Assert.assertEquals(taskToAdd.getDescription(), addedTask.getDescription());
-    }
-
-    @Test
-    public void updateTaskTest() {
-        Task taskToUpdate = new Task();
-
-        taskController.addTask(taskToUpdate);
-
-        Task updatedTask = taskController.updateTask(taskToUpdate.getId(),
-                                            Task.builder().name("TestName").build());
-
-        Assert.assertNotNull(updatedTask);
-        Assert.assertNotEquals(updatedTask.getName(), taskToUpdate.getName());
-    }
-
-    @Test
-    public void setTaskDoneTest() {
-        Task taskToSetDone = new Task();
-
-        taskController.addTask(taskToSetDone);
-
-        Assert.assertNotEquals(true, taskToSetDone.isDone());
-
-        Task setDoneTask = taskController.setTaskDone(taskToSetDone.getId(),
-                taskToSetDone);
-
-        Assert.assertNotNull(setDoneTask);
-        Assert.assertTrue(setDoneTask.isDone());
-    }
+//    @Test
+//    public void updateTaskTest() {
+//        Task taskToUpdate = new Task();
+//
+//        taskController.addTask(taskToUpdate);
+//
+//        Task updatedTask = taskController.updateTask(taskToUpdate.getId(),
+//                                            Task.builder().name("TestName").build());
+//
+//        Assert.assertNotNull(updatedTask);
+//        Assert.assertNotEquals(updatedTask.getName(), taskToUpdate.getName());
+//    }
+//
+//    @Test
+//    public void setTaskDoneTest() {
+//        Task taskToSetDone = new Task();
+//
+//        taskController.addTask(taskToSetDone);
+//
+//        Assert.assertNotEquals(true, taskToSetDone.isDone());
+//
+//        Task setDoneTask = taskController.setTaskDone(taskToSetDone.getId(),
+//                taskToSetDone);
+//
+//        Assert.assertNotNull(setDoneTask);
+//        Assert.assertTrue(setDoneTask.isDone());
+//    }
 }

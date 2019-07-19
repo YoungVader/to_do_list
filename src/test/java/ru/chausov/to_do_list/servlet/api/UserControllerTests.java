@@ -8,6 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.chausov.to_do_list.data_base.entity.User;
+import ru.chausov.to_do_list.data_base.repository.UserRepository;
+import ru.chausov.to_do_list.data_base.type.Role;
+
+import java.security.Principal;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @RunWith(SpringRunner.class)
@@ -16,6 +23,8 @@ public class UserControllerTests  {
 
     @Autowired
     private UserController userController;
+    @Autowired
+    private UserRepository userRepository;
 
 //    @Test
 //    public void addUserTest() throws Exception {
@@ -30,10 +39,15 @@ public class UserControllerTests  {
 //    public void updateUserTest() throws Exception {
 //        User userToUpdate = new User();
 //
-//        userController.updateUser(userToUpdate.getId(), userToUpdate);
+//        userToUpdate.setRoles(Collections.singleton(Role.USER));
+//        userToUpdate.setUsername("testUser");
 //
-//        User updatedUser = userController.updateUser(userToUpdate.getId(),
-//                User.builder().name("TestName").build());
+//        Map<String, Object> map = new HashMap<>();
+//
+//        userRepository.save(userToUpdate);
+//
+//        User updatedUser = (User) userController.updateUser(
+//                User.builder().name("TestName").build(), map).getModel().get("user");
 //
 //        Assert.assertNotNull(updatedUser);
 //        Assert.assertNotEquals(updatedUser.getName(), userToUpdate.getName());

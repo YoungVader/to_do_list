@@ -23,6 +23,7 @@ public class User {
     @GeneratedValue
     private Long id;
     private String username;
+    @JsonIgnore
     private String password;
     private boolean active;
     private String name;
