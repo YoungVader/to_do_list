@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.chausov.to_do_list.data_base.entity.User;
 import ru.chausov.to_do_list.data_base.repository.UserRepository;
+import ru.chausov.to_do_list.data_base.type.Role;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.util.Collections;
 import java.util.Map;
 
 
@@ -29,13 +31,22 @@ public class UserController {
         return new ModelAndView("table_users", model);
     }
 
-//    @Transactional
-//    @PostMapping("/add")
-//    public User addUser(User user) throws Exception {
-////        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().
-////                getAuthentication().getDetails();
-//        return userRepository.save(user);
-//    }
+    @Transactional
+    @PostMapping("/add")
+    public ModelAndView addUser(User user, Map<String, Object> model) {
+        User userFromDb = userRepository.findByUsername(user.getUsername());
+
+        if(userFromDb != null) {
+            model.put("message", "User already exists!");
+            return new ModelAndView("registration", model);
+        }
+
+        user.setActive(true);
+        user.setRoles(Collections.singleton(Role.USER));
+
+        model.put("user", userRepository.save(user));
+        return new ModelAndView("redirect:/login", model);
+    }
 
     @Transactional
     @PostMapping("/delete")
@@ -43,39 +54,19 @@ public class UserController {
         userRepository.deleteById(id);
     }
 
-//    @Transactional
-//    @PostMapping("/update")
-//    public User updateUser(@PathVariable(value = "id") Long id, User user) {
-//        return userRepository.save(user);
-//    }
-
     @Transactional
     @PostMapping("/update")
     public ModelAndView updateUser(Principal authUser, User user, Map<String, Object> model) {
+        User userToUpdate = userRepository.findByUsername(authUser.getName());
 
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        userToUpdate.setName(user.getName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setBirthDate(user.getBirthDate());
+        userToUpdate.setGender(user.getGender());
+        userToUpdate.setCompany(user.getCompany());
+        userToUpdate.setAddress(user.getAddress());
 
-        User foundUser = userRepository.findByUsername(authUser.getName());
-
-        if (user.getName() != null)
-            foundUser.setName(user.getName());
-
-        if (user.getLastName() != null)
-            foundUser.setLastName(user.getLastName());
-
-        if (user.getBirthDate() != null)
-            foundUser.setBirthDate(user.getBirthDate());
-
-        if (user.getGender() != null)
-            foundUser.setGender(user.getGender());
-
-        if (user.getCompany() != null)
-            foundUser.setCompany(user.getCompany());
-
-        if (user.getAddress() != null)
-            foundUser.setAddress(user.getAddress());
-
-        model.put("user", userRepository.save(foundUser));
+        model.put("user", userRepository.save(userToUpdate));
 
         return new ModelAndView("redirect:/index", model);
     }
