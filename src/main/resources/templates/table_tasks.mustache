@@ -16,6 +16,8 @@
     <th>Received date</th>
     <th>To be done</th>
     <th>Done</th>
+    <th></th>
+    <th></th>
     <ul>
         {{#tasks}}
             {{#.}}
@@ -25,7 +27,21 @@
                     <td>{{description}}</td>
                     <td>{{receivedDate}}</td>
                     <td>{{toBeDone}}</td>
-                    <td>{{done}}</td>
+                    <td><form action="/tasks/done" method="post">
+                        <input name="id" type="hidden" value={{id}} />
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <div><input type="submit" value={{done}} /></div>
+                    </form></td>
+                    <td><form action="/edit/task" method="get">
+                        <input name="id" type="hidden" value={{id}} />
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <div><input type="submit" value="edit" /></div>
+                    </form></td>
+                    <td><form action="/tasks/delete" method="post">
+                        <input name="id" type="hidden" value={{id}} />
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <div><input type="submit" value="delete" /></div>
+                    </form></td>
                 </tr>
             {{/.}}
         {{/tasks}}

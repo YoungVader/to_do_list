@@ -50,20 +50,39 @@ public class TaskController {
 
     @Transactional
     @PostMapping("/delete")
-    public void deleteTask(@PathVariable(value = "id") Long id) {
-        taskRepository.deleteById(id);
+    public ModelAndView deleteTask(String id) {
+        taskRepository.deleteById(Long.parseLong(id));
+
+        return new ModelAndView("redirect:/tasks/table");
     }
 
     @Transactional
     @PostMapping("/update")
-    public Task updateTask(@PathVariable(value = "id") Long id, Task task) {
-        return taskRepository.save(task);
+    public ModelAndView updateTask(Task task, Map<String, Object> model) {
+        Task taskToUpdate = taskRepository.findById(task.getId()).get();
+
+        taskToUpdate.setName(task.getName());
+        taskToUpdate.setDescription(task.getDescription());
+        taskToUpdate.setReceivedDate(task.getReceivedDate());
+        taskToUpdate.setToBeDone(task.getToBeDone());
+
+        model.put("task", taskRepository.save(taskToUpdate));
+
+        return new ModelAndView("redirect:/tasks/table", model);
     }
 
     @Transactional
     @PostMapping("/done")
-    public Task setTaskDone(@RequestParam(value = "id") Long id, Task task) {
-        task.setDone(true);
-        return taskRepository.save(task);
+    public ModelAndView setTaskDone(String id, Map<String, Object> model) {
+        Task task = taskRepository.findById(Long.parseLong(id)).get();
+
+        if(!task.isDone())
+            task.setDone(true);
+        else
+            task.setDone(false);
+
+        model.put("task", taskRepository.save(task));
+
+        return new ModelAndView("redirect:/tasks/table");
     }
 }
