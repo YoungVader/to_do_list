@@ -21,20 +21,4 @@ public class RegistrationController {
     public String registration() {
         return "registration";
     }
-
-    @PostMapping("/registration")
-    public ModelAndView addUser(User user, Map<String, Object> model) {
-        User userFromDb = userRepository.findByUsername(user.getUsername());
-
-        if(userFromDb != null) {
-            model.put("message", "User already exists!");
-            return new ModelAndView("registration", model);
-        }
-
-        user.setActive(true);
-        user.setRoles(Collections.singleton(Role.USER));
-
-        model.put("user", userRepository.save(user));
-        return new ModelAndView("redirect:/login", model);
-    }
 }
