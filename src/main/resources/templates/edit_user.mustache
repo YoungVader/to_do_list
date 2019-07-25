@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>To do list edit profile</title>
+    <title>To do list edit user</title>
 </head>
 <body>
-<p>Edit profile</p>
+<p>Edit user</p>
 
 <form action="/users/update" method="post">
     <input type="hidden" name="id" value="{{#user}}{{id}}{{/user}}" />
-    <div><label> Username : <input type="text" name="username" value="{{#user}}{{username}}{{/user}}" /> </label></div>
-    <div><label> Password : <input type="password" name="password" value="{{#user}}{{password}}{{/user}}" /> </label></div>
+    <input type="hidden" name="userEdit" value="1" />
     <div><label> Name : <input type="text" name="name" value="{{#user}}{{name}}{{/user}}" /> </label></div>
     <div><label> Last Name : <input type="text" name="lastName" value="{{#user}}{{lastName}}{{/user}}" /> </label></div>
     <div><label> Gender : <br>
@@ -22,6 +21,29 @@
             <input type="radio" name="gender" value="female"> Female
         {{/gender}}
     </label></div>
+
+    {{#is_admin}}
+        {{#role_changeable}}
+            <div><label> Role : <br>
+                {{#role_admin}}
+                    <input type="radio" name="userRole" value="admin" checked> Admin<br>
+                    <input type="radio" name="userRole" value="moder" > Moder<br>
+                    <input type="radio" name="userRole" value="user" > User<br>
+                {{/role_admin}}
+                {{#role_moder}}
+                    <input type="radio" name="userRole" value="admin" > Admin<br>
+                    <input type="radio" name="userRole" value="moder" checked> Moder<br>
+                    <input type="radio" name="userRole" value="user" > User<br>
+                {{/role_moder}}
+                {{#role_user}}
+                    <input type="radio" name="userRole" value="admin" > Admin<br>
+                    <input type="radio" name="userRole" value="moder" > Moder<br>
+                 <input type="radio" name="userRole" value="user" checked> User<br>
+                {{/role_user}}
+            </label></div>
+        {{/role_changeable}}
+    {{/is_admin}}
+
     <div><label> Company : <input type="text" name="company" value="{{#user}}{{company}}{{/user}}" /> </label></div>
     <div><label> Birth Date : <input type="date" name="birthDate" value="{{#user}}{{birthDate}}{{/user}}" /> </label></div>
     <div><label> Address : <input type="text" name="address" value="{{#user}}{{address}}{{/user}}" /> </label></div>

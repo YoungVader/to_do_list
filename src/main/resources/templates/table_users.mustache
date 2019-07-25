@@ -13,6 +13,13 @@
     <th>Company</th>
     <th>Birth date</th>
     <th>Address</th>
+    {{#role_moder}}
+        <th></th>
+    {{/role_moder}}
+    {{#role_admin}}
+        <th></th>
+        <th></th>
+    {{/role_admin}}
     <ul>
         {{#users}}
             {{#.}}
@@ -24,6 +31,25 @@
                     <td>{{company}}</td>
                     <td>{{birthDate}}</td>
                     <td>{{address}}</td>
+                    {{#role_moder}}
+                        <td><form action="/edit/user" method="get">
+                            <input name="id" type="hidden" value={{id}} />
+                            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                            <div><input type="submit" value="edit" /></div>
+                        </form></td>
+                    {{/role_moder}}
+                    {{#role_admin}}
+                        <td><form action="/edit/user" method="get">
+                            <input name="id" type="hidden" value={{id}} />
+                            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                            <div><input type="submit" value="edit" /></div>
+                        </form></td>
+                        <td><form action="/users/delete" method="post">
+                            <input name="id" type="hidden" value={{id}} />
+                            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                            <div><input type="submit" value="delete" /></div>
+                        </form></td>
+                    {{/role_admin}}
                 </tr>
             {{/.}}
         {{/users}}

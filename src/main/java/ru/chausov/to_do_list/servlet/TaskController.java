@@ -3,6 +3,7 @@ package ru.chausov.to_do_list.servlet;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.chausov.to_do_list.data_base.entity.Task;
@@ -15,7 +16,7 @@ import java.security.Principal;
 import java.util.Map;
 
 
-@RestController
+@Controller
 @Data
 @RequestMapping("/tasks")
 @RequiredArgsConstructor
