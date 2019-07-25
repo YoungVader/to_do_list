@@ -31,7 +31,7 @@ public class UserRepositoryTests {
     public void findTest() {
         User userToFind = new User();
 
-        userToFind.setRoles(Collections.singleton(Role.USER));
+        userToFind.setRole(Role.USER);
 
         userRepository.save(userToFind);
 

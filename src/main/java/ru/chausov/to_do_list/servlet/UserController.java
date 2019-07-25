@@ -11,7 +11,6 @@ import ru.chausov.to_do_list.data_base.type.Role;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
-import java.util.Collections;
 import java.util.Map;
 
 
@@ -34,6 +33,7 @@ public class UserController {
     @Transactional
     @PostMapping("/add")
     public ModelAndView addUser(User user, Map<String, Object> model) {
+
         User userFromDb = userRepository.findByUsername(user.getUsername());
 
         if(userFromDb != null) {
@@ -42,9 +42,11 @@ public class UserController {
         }
 
         user.setActive(true);
-        user.setRoles(Collections.singleton(Role.USER));
+
+        user.setRole(Role.USER);
 
         model.put("user", userRepository.save(user));
+
         return new ModelAndView("redirect:/login", model);
     }
 
