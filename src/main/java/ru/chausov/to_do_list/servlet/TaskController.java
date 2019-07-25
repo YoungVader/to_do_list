@@ -59,8 +59,8 @@ public class TaskController {
 
     @Transactional
     @PostMapping("/update")
-    public ModelAndView updateTask(Task task, Map<String, Object> model) {
-        Task taskToUpdate = taskRepository.findById(task.getId()).get();
+    public ModelAndView updateTask(String id, Task task, Map<String, Object> model) {
+        Task taskToUpdate = taskRepository.findById(Long.parseLong(id)).get();
 
         taskToUpdate.setName(task.getName());
         taskToUpdate.setDescription(task.getDescription());
@@ -84,6 +84,6 @@ public class TaskController {
 
         model.put("task", taskRepository.save(task));
 
-        return new ModelAndView("redirect:/tasks/table");
+        return new ModelAndView("redirect:/tasks/table", model);
     }
 }

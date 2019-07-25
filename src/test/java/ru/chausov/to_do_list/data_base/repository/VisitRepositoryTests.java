@@ -18,7 +18,7 @@ public class VisitRepositoryTests {
 
     @Test
     public void saveTest() {
-        Visit visitToSave = new Visit();
+        Visit visitToSave = Visit.builder().build();
 
         Visit savedVisit = visitRepository.save(visitToSave);
 
@@ -27,7 +27,7 @@ public class VisitRepositoryTests {
 
     @Test
     public void findTest() {
-        Visit visitToFind = new Visit();
+        Visit visitToFind = Visit.builder().build();
 
         visitRepository.save(visitToFind);
 
@@ -39,7 +39,7 @@ public class VisitRepositoryTests {
 
     @Test
     public void deleteTest() {
-        Visit visit = new Visit();
+        Visit visit = Visit.builder().build();
 
         visitRepository.save(visit);
 

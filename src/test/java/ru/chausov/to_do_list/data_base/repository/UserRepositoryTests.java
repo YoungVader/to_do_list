@@ -6,10 +6,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import ru.chausov.to_do_list.data_base.entity.Task;
 import ru.chausov.to_do_list.data_base.entity.User;
 import ru.chausov.to_do_list.data_base.type.Role;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 @RunWith(SpringRunner.class)
@@ -20,7 +23,7 @@ public class UserRepositoryTests {
 
     @Test
     public void saveTest() {
-        User userToSave = new User();
+        User userToSave = User.builder().build();
 
         User savedUser =  userRepository.save(userToSave);
 
@@ -29,7 +32,7 @@ public class UserRepositoryTests {
 
     @Test
     public void findTest() {
-        User userToFind = new User();
+        User userToFind = User.builder().build();
 
         userToFind.setRole(Role.USER);
 
@@ -43,7 +46,7 @@ public class UserRepositoryTests {
 
     @Test
     public void deleteTest() {
-        User user = new User();
+        User user = User.builder().build();
 
         userRepository.save(user);
 

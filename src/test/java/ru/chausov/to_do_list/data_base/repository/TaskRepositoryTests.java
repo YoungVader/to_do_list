@@ -19,7 +19,7 @@ public class TaskRepositoryTests {
 
     @Test
     public void saveTest() {
-        Task taskToSave = new Task();
+        Task taskToSave = Task.builder().build();
 
         Task savedTask = taskRepository.save(taskToSave);
 
@@ -28,7 +28,7 @@ public class TaskRepositoryTests {
 
     @Test
     public void findTest() {
-        Task taskToFind = new Task();
+        Task taskToFind = Task.builder().build();
 
         taskRepository.save(taskToFind);
 
@@ -40,7 +40,7 @@ public class TaskRepositoryTests {
 
     @Test
     public void deleteTest() {
-        Task task = new Task();
+        Task task = Task.builder().build();
 
         taskRepository.save(task);
 
