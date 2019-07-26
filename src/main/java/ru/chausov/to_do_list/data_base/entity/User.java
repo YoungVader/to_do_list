@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import ru.chausov.to_do_list.data_base.type.Role;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,6 +36,6 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true,
                 fetch = FetchType.EAGER)
-    private List<Task> tasks = new ArrayList<>();
+    private List<Task> tasks;
 
 }
