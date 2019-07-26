@@ -4,16 +4,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.ModelAndView;
 import ru.chausov.to_do_list.data_base.entity.Task;
 import ru.chausov.to_do_list.data_base.entity.User;
@@ -21,7 +16,6 @@ import ru.chausov.to_do_list.data_base.repository.TaskRepository;
 import ru.chausov.to_do_list.data_base.repository.UserRepository;
 import ru.chausov.to_do_list.servlet.TaskController;
 
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
