@@ -47,6 +47,7 @@ public class TaskControllerTests {
 
         Map<String, Object> model = new HashMap<>();
 
+        // Security есть? какую роль имеет user-123, может ли он сохранять этот таск?
         ModelAndView modelAndView = taskController.addTask(auth, taskToAdd, model);
 
         Task addedTask = (Task) modelAndView.getModel().get("task");
@@ -63,6 +64,7 @@ public class TaskControllerTests {
 
         Map<String, Object> model = new HashMap<>();
 
+        //Какой пользователь обновляет задачу?
         ModelAndView modelAndView = taskController.updateTask(taskToUpdate.getId().toString(),
                 Task.builder().name("TestName").build(), model);
 

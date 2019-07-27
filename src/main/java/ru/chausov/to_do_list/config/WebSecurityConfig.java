@@ -18,8 +18,8 @@ import javax.sql.DataSource;
 @Configuration
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private DataSource dataSource;
+
+    private final DataSource dataSource;
     private final UserRepository userRepository;
 
     @Override
@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance())
+                .passwordEncoder(NoOpPasswordEncoder.getInstance()) //он же deprecated
                 .usersByUsernameQuery("select username, password, active from users where username=?")
                 .authoritiesByUsernameQuery("select username, role from users where username=?");
     }

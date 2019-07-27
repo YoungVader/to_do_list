@@ -6,12 +6,20 @@
 <body>
 <p>Edit profile</p>
 
+<!--<label> кажется нигде не нужен-->
 <form action="/users/update" method="post">
+    <!--{{#user}} можно 1 раз написть здесь-->
     <input type="hidden" name="id" value="{{#user}}{{id}}{{/user}}" />
     <div><label> Username : <input type="text" name="username" value="{{#user}}{{username}}{{/user}}" /> </label></div>
     <div><label> Password : <input type="password" name="password" value="{{#user}}{{password}}{{/user}}" /> </label></div>
     <div><label> Name : <input type="text" name="name" value="{{#user}}{{name}}{{/user}}" /> </label></div>
     <div><label> Last Name : <input type="text" name="lastName" value="{{#user}}{{lastName}}{{/user}}" /> </label></div>
+
+    <!--<div><label> Gender : <br>-->
+            <!--<input type="radio" name="gender" value="male" > {{^gender}}checked{{/gender}}Male<br>-->
+            <!--<input type="radio" name="gender" value="female" {{#gender}}checked{{/gender}}> Female-->
+    <!--</label></div>-->
+        <!---->
     <div><label> Gender : <br>
         {{#gender}}
             <input type="radio" name="gender" value="male" > Male<br>

@@ -15,9 +15,8 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name="users")
-@NoArgsConstructor
-@AllArgsConstructor
-public class User {
+
+public class User extends org.springframework.security.core.userdetails.User { // в этом классе есть по идее всё нужное тебе
     @Id
     @GeneratedValue
     private Long id;

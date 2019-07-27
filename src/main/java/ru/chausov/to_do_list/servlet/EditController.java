@@ -29,6 +29,8 @@ public class EditController {
 
         model.put("user", user);
 
+        //этот if можно заменить 1 строчкой
+//        model.put("gender", user.getGender().equals("female"));
         if(user.getGender().equals("male"))
             model.put("gender", false);
         else if(user.getGender().equals("female"))
@@ -43,6 +45,8 @@ public class EditController {
 
         model.put("user", user);
 
+        //этот if можно заменить 1 строчкой
+//        model.put("gender", user.getGender().equals("female"));
         if(user.getGender().equals("male"))
             model.put("gender", false);
         else if(user.getGender().equals("female"))
@@ -52,7 +56,7 @@ public class EditController {
 
         if(authorisedUser.getRole().equals(Role.ADMIN)) {
             if (user.getRole().equals(Role.ADMIN))
-                model.put("role_admin", true);
+                model.put("role_admin", true); //единственное возможное значение здесь
             else
                 model.put("role_admin", false);
 
@@ -71,6 +75,7 @@ public class EditController {
         else
             model.put("is_admin", false);
 
+        // if-else без скобок вообще не пишут в Java  мире))
         if(user.getUsername().equals("admin"))
             model.put("role_changeable", false);
         else
@@ -80,7 +85,7 @@ public class EditController {
     }
 
     @GetMapping("/task")
-    public ModelAndView editTask(String id, Map<String, Object> model){
+    public ModelAndView editTask(String id, Map<String, Object> model){ // тут нельзя сделать Long id?
         Task task = taskRepository.findById(Long.parseLong(id)).get();
 
         model.put("task", task);

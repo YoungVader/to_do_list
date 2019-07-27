@@ -8,6 +8,7 @@
 
 <form action="/users/update" method="post">
     <input type="hidden" name="id" value="{{#user}}{{id}}{{/user}}" />
+    <!--Шо за userEdit=1, почему не boolean-->
     <input type="hidden" name="userEdit" value="1" />
     <div><label> Name : <input type="text" name="name" value="{{#user}}{{name}}{{/user}}" /> </label></div>
     <div><label> Last Name : <input type="text" name="lastName" value="{{#user}}{{lastName}}{{/user}}" /> </label></div>
@@ -22,6 +23,7 @@
         {{/gender}}
     </label></div>
 
+    <!--То же самое что с gender-->
     {{#is_admin}}
         {{#role_changeable}}
             <div><label> Role : <br>

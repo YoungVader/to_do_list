@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.Date;
 
-public class TokenAuthenticationService {
+public class TokenAuthenticationService { // сервис вообще не используется
     static final long EXPIRATION_TIME = 864_000_000; // 10 days
 
-    static final String SECRET = "ThisIsASecret";
+    static final String SECRET = "ThisIsASecret"; //access can be private
 
     static final String TOKEN_PREFIX = "Bearer";
 
