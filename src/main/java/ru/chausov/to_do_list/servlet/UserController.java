@@ -16,8 +16,6 @@ import ru.chausov.to_do_list.data_base.type.Role;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
 
 
@@ -131,10 +129,8 @@ public class UserController {
         if(userEdit != null)
             return new ModelAndView("redirect:/users/table", model);
 
-        if(!userToUpdate.getUsername().equals(user.getUsername())
-                || !userToUpdate.getPassword().equals(user.getPassword())){
-            userToUpdate.setUsername(user.getUsername());
-            userToUpdate.setPassword(user.getPassword());
+        if(!userToUpdate.getPassword().equals(user.getPassword())){
+            userToUpdate.setPassword(passwordEncoder.encode(user.getPassword()));
 
             return new ModelAndView("redirect:/logout", model);
         }

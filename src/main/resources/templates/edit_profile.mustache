@@ -5,10 +5,9 @@
 </head>
 <body>
 <p>Edit profile</p>
-
 <form action="/users/update" method="post">
     <input type="hidden" name="id" value="{{#user}}{{id}}{{/user}}" />
-    <div><label> Username : <input type="text" name="username" value="{{#user}}{{username}}{{/user}}" /> </label></div>
+    <input type="text" hidden="username" value="{{#user}}{{username}}{{/user}}" />
     <div><label> Password : <input type="password" name="password" value="{{#user}}{{password}}{{/user}}" /> </label></div>
     <div><label> Name : <input type="text" name="name" value="{{#user}}{{name}}{{/user}}" /> </label></div>
     <div><label> Last Name : <input type="text" name="lastName" value="{{#user}}{{lastName}}{{/user}}" /> </label></div>
