@@ -38,8 +38,8 @@ public class EditController {
     }
 
     @GetMapping("/user")
-    public ModelAndView editUser(Principal authUser, String id, Map<String, Object> model){
-        User user = userRepository.findById(Long.parseLong(id)).get();
+    public ModelAndView editUser(Principal authUser, Long id, Map<String, Object> model){
+        User user = userRepository.findById(id).get();
 
         model.put("user", user);
 
@@ -53,18 +53,12 @@ public class EditController {
         if(authorisedUser.getRole().equals(Role.ADMIN)) {
             if (user.getRole().equals(Role.ADMIN))
                 model.put("role_admin", true);
-            else
-                model.put("role_admin", false);
 
             if (user.getRole().equals(Role.MODER))
                 model.put("role_moder", true);
-            else
-                model.put("role_moder", false);
 
             if (user.getRole().equals(Role.USER))
                 model.put("role_user", true);
-            else
-                model.put("role_user", false);
 
             model.put("is_admin", true);
         }
@@ -80,8 +74,8 @@ public class EditController {
     }
 
     @GetMapping("/task")
-    public ModelAndView editTask(String id, Map<String, Object> model){
-        Task task = taskRepository.findById(Long.parseLong(id)).get();
+    public ModelAndView editTask(Long id, Map<String, Object> model){
+        Task task = taskRepository.findById(id).get();
 
         model.put("task", task);
 
