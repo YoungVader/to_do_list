@@ -13,6 +13,7 @@ import ru.chausov.to_do_list.data_base.repository.UserRepository;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.Map;
 
 
@@ -40,6 +41,8 @@ public class TaskController {
     @Transactional
     @PostMapping("/add")
     public ModelAndView addTask(Principal authUser, Task task, Map<String, Object> model) {
+        task.setReceivedDate(LocalDate.now().toString());
+
         User user = userRepository.findByUsername(authUser.getName());
 
         task.setUser(user);

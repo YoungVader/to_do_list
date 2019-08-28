@@ -8,7 +8,6 @@
 <form action="/tasks/add" method="post">
     <div><label> Task name : <input type="text" name="name"/> </label></div>
     <div><label> Description: <input type="text" name="description"/> </label></div>
-    <div><label> Received date : <input type="date" name="receivedDate"/> </label></div>
     <div><label> To be done date : <input type="date" name="toBeDone"/> </label></div>
     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
     <div><input type="submit" value="Add"/></div>
