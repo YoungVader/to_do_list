@@ -27,7 +27,7 @@ public class UserControllerTests {
 
     @Test
     public void addUserTest() throws Exception {
-        User userToAdd = User.builder().username("username").build();
+        User userToAdd = User.builder().username("username").password("123").build();
 
         Map<String, Object> model = new HashMap<>();
 
@@ -48,7 +48,7 @@ public class UserControllerTests {
         Map<String, Object> model = new HashMap<>();
 
         ModelAndView modelAndView = userController.updateUser(userToUpdate.getId().toString(),
-                User.builder().name("TestName").build(),
+                User.builder().name("TestName").password("123").build(),
                 null,
                 null,
                 model);
