@@ -19,13 +19,19 @@ public class IndexController {
     private final VisitRepository visitRepository;
 
     @GetMapping("")
-    public String greeting() {
+    public ModelAndView greeting(Principal authUser, Map<String, Object> model) {
         Visit visit = Visit.builder()
                 .description(String.format("Visited at %s", LocalDateTime.now()))
                 .build();
         visitRepository.save(visit);
 
-        return "greeting";
+        try {
+            model.put("username", authUser.getName());
+        } catch (NullPointerException exception) {
+
+        }
+
+        return new ModelAndView("greeting", model);
     }
 
     @GetMapping("/index")
