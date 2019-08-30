@@ -6,7 +6,7 @@
     <title>To do list application greetings</title>
 </head>
 <body>
-<h1>Hello, guest!</h1>
+<h1><nobr>Hello, </nobr></h1> <h1 th:if="${username}" th:text="${username}"></h1><h1 th:else>guest!</h1>
 <a href="/index">Main page</a>
 </body>
 </html>
