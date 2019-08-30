@@ -1,11 +1,17 @@
 body{
+    text-align:center;
     background-color: #d1cdcd;
-   }
+}
+
 h1 {
     color:#f2190a;
 }
 
-h2 {
+p {
+    color:#FF0000;
+}
+
+a {
     color:#FF0000;
 }
 
