@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <title>To do list registration</title>
 </head>
 <body>
 <p>Add new user</p>
-<p>{{#message}}
-{{message}}
-    {{/message}}</p>
-<form action="/users/add" method="post">
+<div th:if="${message}">
+    <div class="alert alert-danger">
+        <p th:text="${message}"></p>
+    </div>
+</div>
+<form th:action="@{/users/add}" method="post">
     <div><label> User Name : <input type="text" name="username"/> </label></div>
     <div><label> Password: <input type="password" name="password"/> </label></div>
     <div><label> Name : <input type="text" name="name"/> </label></div>
