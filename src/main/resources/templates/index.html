@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>To do list application</h1>
-    <p th:text="${username}"></p>
+    <h2> Welcome, <span th:text="${username}"></span>!</h2>
     <p>Actions:</p>
         <a th:href="@{/users/table}">Show users</a><br><br>
         <a th:href="@{/tasks/table}">Show tasks</a><br><br>
