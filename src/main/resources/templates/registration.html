@@ -6,25 +6,28 @@
     <title>To do list registration</title>
 </head>
 <body>
-<p>Add new user</p>
+<h1>Registration</h1>
 <div th:if="${message}">
     <div class="alert alert-danger">
         <p th:text="${message}"></p>
     </div>
 </div>
 <form th:action="@{/users/add}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><label> Name : <input type="text" name="name"/> </label></div>
-    <div><label> Last Name : <input type="text" name="lastName"/> </label></div>
+    <fieldset class="login">
+        <legend>Login</legend>
+        <div><label> User Name : <input type="text" name="username" required> </label></div>
+        <div><label> Password: <input type="password" name="password" required> </label></div>
+    </fieldset>
+    <div><label> Name : <input type="text" name="name"> </label></div>
+    <div><label> Last Name : <input type="text" name="lastName"> </label></div>
     <div><label> Gender : <br>
         <input type="radio" name="gender" value="male" checked> Male<br>
         <input type="radio" name="gender" value="female"> Female
     </label></div>
-    <div><label> Company : <input type="text" name="company"/> </label></div>
-    <div><label> Birth Date : <input type="date" name="birthDate"/> </label></div>
-    <div><label> Address : <input type="text" name="address"/> </label></div>
-    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <div><label> Company : <input type="text" name="company"> </label></div>
+    <div><label> Birth Date : <input type="date" name="birthDate"> </label></div>
+    <div><label> Address : <input type="text" name="address"> </label></div>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" >
     <div><input type="submit" value="Sign In"/></div>
 </form>
 </body>

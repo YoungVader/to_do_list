@@ -1,22 +1,27 @@
+.login{
+    width: 300px;
+    float: center;
+}
+
 body{
     text-align:center;
     background-color: #d1cdcd;
 }
 
 h1 {
-    color:#f2190a;
+    color: #f2190a;
 }
 
 h2 {
-    color:#06911b;
+    color: #06911b;
 }
 
 p {
-    color:#000000;
+    color: #000000;
 }
 
 a {
-    color:#1207e0;
+    color: #1207e0;
 }
 
 table {
@@ -25,4 +30,12 @@ table {
 
 table th, table td {
     padding: 5px;
+}
+
+label {
+
+}
+
+input {
+    float: right;
 }
