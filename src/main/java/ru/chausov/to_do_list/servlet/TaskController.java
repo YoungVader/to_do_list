@@ -54,16 +54,16 @@ public class TaskController {
 
     @Transactional
     @PostMapping("/delete")
-    public ModelAndView deleteTask(String id) {
-        taskRepository.deleteById(Long.parseLong(id));
-
+    public ModelAndView deleteTask(Long id) {
+        taskRepository.deleteById(id);
+        System.out.println(id);
         return new ModelAndView("redirect:/tasks/table");
     }
 
     @Transactional
     @PostMapping("/update")
-    public ModelAndView updateTask(String id, Task task, Map<String, Object> model) {
-        Task taskToUpdate = taskRepository.findById(Long.parseLong(id)).get();
+    public ModelAndView updateTask(Long id, Task task, Map<String, Object> model) {
+        Task taskToUpdate = taskRepository.findById(id).get();
 
         taskToUpdate.setName(task.getName());
         taskToUpdate.setDescription(task.getDescription());
@@ -77,8 +77,8 @@ public class TaskController {
 
     @Transactional
     @PostMapping("/done")
-    public ModelAndView setTaskDone(String id, Map<String, Object> model) {
-        Task task = taskRepository.findById(Long.parseLong(id)).get();
+    public ModelAndView setTaskDone(Long id, Map<String, Object> model) {
+        Task task = taskRepository.findById(id).get();
 
         if(!task.isDone())
             task.setDone(true);

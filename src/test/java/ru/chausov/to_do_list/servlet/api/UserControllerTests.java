@@ -47,7 +47,7 @@ public class UserControllerTests {
 
         Map<String, Object> model = new HashMap<>();
 
-        ModelAndView modelAndView = userController.updateUser(userToUpdate.getId().toString(),
+        ModelAndView modelAndView = userController.updateUser(userToUpdate.getId(),
                 User.builder().name("TestName").password("123").build(),
                 null,
                 null,

@@ -98,16 +98,16 @@ public class UserController {
 
     @Transactional
     @PostMapping("/delete")
-    public ModelAndView deleteUser(String id) {
-        userRepository.deleteById(Long.parseLong(id));
+    public ModelAndView deleteUser(Long id) {
+        userRepository.deleteById(id);
 
         return new ModelAndView("redirect:/users/table");
     }
 
     @Transactional
     @PostMapping("/update")
-    public ModelAndView updateUser(String id, User user, String userRole, String userEdit, Map<String, Object> model) {
-        User userToUpdate = userRepository.findById(Long.parseLong(id)).get();
+    public ModelAndView updateUser(Long id, User user, String userRole, String userEdit, Map<String, Object> model) {
+        User userToUpdate = userRepository.findById(id).get();
 
         userToUpdate.setName(user.getName());
         userToUpdate.setLastName(user.getLastName());

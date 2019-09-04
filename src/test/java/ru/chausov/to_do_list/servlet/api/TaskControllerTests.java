@@ -63,7 +63,7 @@ public class TaskControllerTests {
 
         Map<String, Object> model = new HashMap<>();
 
-        ModelAndView modelAndView = taskController.updateTask(taskToUpdate.getId().toString(),
+        ModelAndView modelAndView = taskController.updateTask(taskToUpdate.getId(),
                 Task.builder().name("TestName").build(), model);
 
         Task updatedTask = (Task) modelAndView.getModel().get("task");
@@ -83,7 +83,7 @@ public class TaskControllerTests {
 
         Map<String, Object> model = new HashMap<>();
 
-        ModelAndView modelAndView = taskController.setTaskDone(taskToSetDone.getId().toString(),
+        ModelAndView modelAndView = taskController.setTaskDone(taskToSetDone.getId(),
                 model);
 
         Task setDoneTask = (Task) modelAndView.getModel().get("task");
@@ -91,7 +91,7 @@ public class TaskControllerTests {
         Assert.assertNotNull(setDoneTask);
         Assert.assertTrue(setDoneTask.isDone());
 
-        modelAndView = taskController.setTaskDone(taskToSetDone.getId().toString(),
+        modelAndView = taskController.setTaskDone(taskToSetDone.getId(),
                 model);
         setDoneTask = (Task) modelAndView.getModel().get("task");
 
