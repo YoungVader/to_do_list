@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <title>To do list users</title>
+</head>
+<body>
+<div th:if="${message}">
+    <div class="alert alert-danger">
+        <p th:text="${message}"></p>
+    </div>
+</div>
+    <div th:unless="${message}">
+    <table border="1">
+        <caption>Tasks</caption>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Received date</th>
+        <th>To be done</th>
+        <th>Done</th>
+        <th></th>
+        <th></th>
+                <tr th:each="task : ${tasks}">
+                    <td th:text="${task.id}">id</td>
+                    <td th:text="${task.name}">name</td>
+                    <td th:text="${task.description}">description</td>
+                    <td th:text="${task.receivedDate}">receivedDate</td>
+                    <td th:text="${task.toBeDone}">toBeDone</td>
+                    <td><form th:action="@{/tasks/done}" method="post">
+                        <input name="id" type="hidden" th:value=${task.id}>
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <div><input type="submit" th:value="${task.done}"></div>
+                    </form></td>
+                    <td><form th:action="@{/edit/task}" method="get">
+                        <input name="id" type="hidden" th:value=${task.id}>
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <div><input type="submit" value="edit"></div>
+                    </form></td>
+                    <td><form th:action="@{/tasks/delete}" method="post">
+                        <input name="id" type="hidden" th:value=${task.id}>
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <div><input type="submit" value="delete"></div>
+                    </form></td>
+                </tr>
+    </table>
+    <br>
+</div>
+<a href="/index">Back to main page</a>
+</body>
+</html>
