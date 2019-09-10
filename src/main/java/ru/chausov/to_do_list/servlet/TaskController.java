@@ -56,7 +56,7 @@ public class TaskController {
     @PostMapping("/delete")
     public ModelAndView deleteTask(Long id) {
         taskRepository.deleteById(id);
-        System.out.println(id);
+
         return new ModelAndView("redirect:/tasks/table");
     }
 
