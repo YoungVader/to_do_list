@@ -28,17 +28,17 @@
                     <td th:text="${task.receivedDate}">receivedDate</td>
                     <td th:text="${task.toBeDone}">toBeDone</td>
                     <td><form th:action="@{/tasks/done}" method="post">
-                        <input name="id" type="hidden" th:value=${task.id}>
+                        <input name="id" type="hidden" th:value="${task.id}">
                         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
                         <div><input type="submit" th:value="${task.done}"></div>
                     </form></td>
                     <td><form th:action="@{/edit/task}" method="get">
-                        <input name="id" type="hidden" th:value=${task.id}>
+                        <input name="id" type="hidden" th:value="${task.id}">
                         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
                         <div><input type="submit" value="edit"></div>
                     </form></td>
                     <td><form th:action="@{/tasks/delete}" method="post">
-                        <input name="id" type="hidden" th:value=${task.id}>
+                        <input name="id" type="hidden" th:value="${task.id}">
                         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
                         <div><input type="submit" value="delete"></div>
                     </form></td>

@@ -20,7 +20,13 @@ a {
 }
 
 table {
+    margin: auto;
     border-collapse: collapse;
+}
+
+caption {
+    font-size: 35px;
+    color: #f2190a;
 }
 
 table th, table td {
