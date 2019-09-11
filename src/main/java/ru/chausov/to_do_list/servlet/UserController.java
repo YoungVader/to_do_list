@@ -55,22 +55,22 @@ public class UserController {
 //
 //        model.put("roles", roles);
 
-        User user = userRepository.findByUsername(authUser.getName());
+//        User user = userRepository.findByUsername(authUser.getName());
 
-        if(user.getRole().equals(Role.ADMIN))
-            model.put("role_admin", true);
-        else
-            model.put("role_admin", false);
+//        if(user.getRole().equals(Role.ADMIN))
+//            model.put("role_admin", true);
+//        else
+//            model.put("role_admin", false);
+//
+//        if(user.getRole().equals(Role.MODER))
+//            model.put("role_moder", true);
+//        else
+//            model.put("role_moder", false);
 
-        if(user.getRole().equals(Role.MODER))
-            model.put("role_moder", true);
-        else
-            model.put("role_moder", false);
-
-        if(user.getRole().equals(Role.USER))
-            model.put("role_user", true);
-        else
-            model.put("role_user", false);
+//        if(user.getRole().equals(Role.USER))
+//            model.put("role_user", true);
+//        else
+//            model.put("role_user", false);
 
         return new ModelAndView("table_users", model);
     }
