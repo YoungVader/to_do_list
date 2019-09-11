@@ -15,6 +15,7 @@ import ru.chausov.to_do_list.data_base.repository.UserRepository;
 import ru.chausov.to_do_list.data_base.type.Role;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 
 
 @Configuration
@@ -56,7 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .password(passwordEncoder.encode("123"))
                     .name("")
                     .lastName("")
-                    .birthDate("")
+                    .birthDate(LocalDate.now())
                     .company("")
                     .address("")
                     .gender("male")

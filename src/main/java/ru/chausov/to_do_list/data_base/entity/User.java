@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import ru.chausov.to_do_list.data_base.type.Role;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class User {
     private boolean active;
     private String name;
     private String lastName;
-    private String birthDate;
+    private LocalDate birthDate;
     private String gender;
     private String address;
     private String company;
