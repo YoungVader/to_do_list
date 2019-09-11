@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 
 @Data
@@ -21,8 +23,9 @@ public class Task {
     private Long id;
     private String name;
     private String description;
-    private String receivedDate;
-    private String toBeDone;
+    private LocalDate receivedDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate toBeDone;
     private boolean done;
     @JsonIgnore
     @ManyToOne

@@ -41,7 +41,7 @@ public class TaskController {
     @Transactional
     @PostMapping("/add")
     public ModelAndView addTask(Principal authUser, Task task, Map<String, Object> model) {
-        task.setReceivedDate(LocalDate.now().toString());
+        task.setReceivedDate(LocalDate.now());
 
         User user = userRepository.findByUsername(authUser.getName());
 
