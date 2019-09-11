@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <title>To do list users</title>
+</head>
+<body>
+<table border="1">
+    <caption>Users</caption>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Last name</th>
+    <th>Gender</th>
+    <th>Company</th>
+    <th>Birth date</th>
+    <th>Address</th>
+    <div sec:authorize="hasAuthority('MODER')">
+        <th></th>
+    </div>
+    <div sec:authorize="hasAuthority('ADMIN')">
+        <th></th>
+        <th></th>
+    </div>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">id</td>
+        <td th:text="${user.name}">Name</td>
+        <td th:text="${user.lastName}">Last name</td>
+        <td th:text="${user.gender}">Gender</td>
+        <td th:text="${user.company}">Company</td>
+        <td th:text="${user.birthDate}">Birth date</td>
+        <td th:text="${user.address}">Address</td>
+        <div sec:authorize="hasAuthority('MODER')">
+            <td><form th:action="@{/edit/user}" method="get">
+                <input name="id" type="hidden" th:value="${user.id}">
+                <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+                <div><input type="submit" value="edit" /></div>
+            </form></td>
+        </div>
+        <div sec:authorize="hasAuthority('ADMIN')">
+            <td><form th:action="@{/edit/user}" method="get">
+                <input name="id" type="hidden" th:value="${user.id}">
+                <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+                <div><input type="submit" value="edit" /></div>
+            </form></td>
+            <td><form th:action="@{/users/delete}" method="post">
+                <input name="id" type="hidden" th:value="${user.id}">
+                <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+                <div><input type="submit" value="delete" /></div>
+            </form></td>
+        </div>
+    </tr>
+</table>
+<br>
+<a href="/index">Back to main page</a>
+</body>
+</html>
