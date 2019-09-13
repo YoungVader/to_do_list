@@ -16,7 +16,9 @@ import ru.chausov.to_do_list.data_base.type.Role;
 
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 
 @Data
@@ -33,44 +35,6 @@ public class UserController {
     @GetMapping("/table")
     public ModelAndView getUsers(Principal authUser, Map<String, Object> model) {
         model.put("users", userRepository.findAll());
-//        Iterable<User> users = userRepository.findAll();
-//
-//        model.put("users", users);
-//
-//        ArrayList<String> roles = new ArrayList<>();
-//
-//        Iterator iterator = users.iterator();
-//
-//        while (iterator.hasNext()) {
-//            User user = (User) iterator.next();
-//
-//            if(user.getRole().equals(Role.ADMIN))
-//                roles.add("Admin");
-//            else if(user.getRole().equals(Role.MODER))
-//                roles.add("Moder");
-//            else if(user.getRole().equals(Role.USER))
-//                roles.add("User");
-//            System.out.println(user.getRole());
-//        }
-//
-//        model.put("roles", roles);
-
-//        User user = userRepository.findByUsername(authUser.getName());
-
-//        if(user.getRole().equals(Role.ADMIN))
-//            model.put("role_admin", true);
-//        else
-//            model.put("role_admin", false);
-//
-//        if(user.getRole().equals(Role.MODER))
-//            model.put("role_moder", true);
-//        else
-//            model.put("role_moder", false);
-
-//        if(user.getRole().equals(Role.USER))
-//            model.put("role_user", true);
-//        else
-//            model.put("role_user", false);
 
         return new ModelAndView("table_users", model);
     }
@@ -88,7 +52,11 @@ public class UserController {
 
         user.setActive(true);
 
-        user.setRole(Role.USER);
+        Set<Role> roles = new HashSet<>();
+
+        roles.add(Role.USER);
+
+        user.setRoles(roles);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         model.put("user", userRepository.save(user));
@@ -115,13 +83,25 @@ public class UserController {
         userToUpdate.setGender(user.getGender());
         userToUpdate.setCompany(user.getCompany());
         userToUpdate.setAddress(user.getAddress());
+
         if(userRole != null){
-            if(userRole.equals("admin"))
-                userToUpdate.setRole(Role.ADMIN);
-            else if(userRole.equals("moder"))
-                userToUpdate.setRole(Role.MODER);
-            else
-                userToUpdate.setRole(Role.USER);
+            Set<Role> roles = new HashSet<>();
+
+            if(userRole.equals("admin")) {
+                roles.add(Role.ADMIN);
+
+                userToUpdate.setRoles(roles);
+            }
+            else if(userRole.equals("moder")){
+                roles.add(Role.MODER);
+
+                userToUpdate.setRoles(roles);
+            }
+            else{
+                roles.add(Role.USER);
+
+                userToUpdate.setRoles(roles);
+            }
         }
 
         model.put("user", userRepository.save(userToUpdate));

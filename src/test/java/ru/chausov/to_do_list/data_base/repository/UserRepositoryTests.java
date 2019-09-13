@@ -10,9 +10,7 @@ import ru.chausov.to_do_list.data_base.entity.Task;
 import ru.chausov.to_do_list.data_base.entity.User;
 import ru.chausov.to_do_list.data_base.type.Role;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 
 @RunWith(SpringRunner.class)
@@ -34,7 +32,11 @@ public class UserRepositoryTests {
     public void findTest() {
         User userToFind = User.builder().build();
 
-        userToFind.setRole(Role.USER);
+        Set<Role> roles = new HashSet<>();
+
+        roles.add(Role.USER);
+
+        userToFind.setRoles(roles);
 
         userRepository.save(userToFind);
 

@@ -1,6 +1,7 @@
 package ru.chausov.to_do_list.servlet;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,26 +39,27 @@ public class EditController {
     }
 
     @GetMapping("/user")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('MODER')")
     public ModelAndView editUser(Principal authUser, Long id, Map<String, Object> model){
         User user = userRepository.findById(id).get();
 
         model.put("user", user);
 
-        if(user.getGender().equals("male"))
-            model.put("gender", false);
-        else if(user.getGender().equals("female"))
-            model.put("gender", true);
+//        if(user.getGender().equals("male"))
+//            model.put("gender", false);
+//        else if(user.getGender().equals("female"))
+//            model.put("gender", true);
 
         User authorisedUser = userRepository.findByUsername(authUser.getName());
 
-        if(authorisedUser.getRole().equals(Role.ADMIN)) {
-            if (user.getRole().equals(Role.ADMIN))
+        if(authorisedUser.getRoles().contains(Role.ADMIN)) {
+            if (user.getRoles().contains(Role.ADMIN))
                 model.put("role_admin", true);
 
-            if (user.getRole().equals(Role.MODER))
+            if (user.getRoles().contains(Role.MODER))
                 model.put("role_moder", true);
 
-            if (user.getRole().equals(Role.USER))
+            if (user.getRoles().contains(Role.USER))
                 model.put("role_user", true);
 
             model.put("is_admin", true);
