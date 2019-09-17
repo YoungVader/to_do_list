@@ -16,7 +16,9 @@ import ru.chausov.to_do_list.data_base.repository.TaskRepository;
 import ru.chausov.to_do_list.data_base.repository.UserRepository;
 import ru.chausov.to_do_list.servlet.TaskController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -31,13 +33,13 @@ public class TaskControllerTests {
     private UserRepository userRepository;
 
 
-    @WithMockUser(username = "user", password = "123")
+    @WithMockUser(username = "addUser", password = "123")
     @Test
     public void addTaskTest() {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        User user = User.builder().username("user").password("123").build();
+        User user = User.builder().username("addUser").password("123").build();
 
         userRepository.save(user);
 
@@ -55,12 +57,16 @@ public class TaskControllerTests {
         Assert.assertEquals(taskToAdd.getDescription(), addedTask.getDescription());
     }
 
-    @WithMockUser(username = "user", password = "123")
+    @WithMockUser(username = "updateUser", password = "123")
     @Test
     public void updateTaskTest() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        Task taskToUpdate = Task.builder().build();
+        User user = User.builder().username("updateUser").password("123").build();
+
+        userRepository.save(user);
+
+        Task taskToUpdate = Task.builder().user(user).build();
 
         taskRepository.save(taskToUpdate);
 
@@ -75,12 +81,16 @@ public class TaskControllerTests {
         Assert.assertNotEquals(updatedTask.getName(), taskToUpdate.getName());
     }
 
-    @WithMockUser(username = "user", password = "123")
+    @WithMockUser(username = "doneUser", password = "123")
     @Test
     public void setTaskDoneTest() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        Task taskToSetDone = new Task();
+        User user = User.builder().username("doneUser").password("123").build();
+
+        userRepository.save(user);
+
+        Task taskToSetDone = Task.builder().user(user).build();
 
         taskRepository.save(taskToSetDone);
 
