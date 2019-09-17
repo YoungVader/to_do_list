@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <title>To do list edit user</title>
@@ -23,27 +25,27 @@
         </span>
     </label></div>
 
-<!--    {{#is_admin}}-->
-<!--        {{#role_changeable}}-->
-<!--            <div><label> Role : <br>-->
-<!--                {{#role_admin}}-->
-<!--                    <input type="radio" name="userRole" value="admin" checked> Admin<br>-->
-<!--                    <input type="radio" name="userRole" value="moder" > Moder<br>-->
-<!--                    <input type="radio" name="userRole" value="user" > User<br>-->
-<!--                {{/role_admin}}-->
-<!--                {{#role_moder}}-->
-<!--                    <input type="radio" name="userRole" value="admin" > Admin<br>-->
-<!--                    <input type="radio" name="userRole" value="moder" checked> Moder<br>-->
-<!--                    <input type="radio" name="userRole" value="user" > User<br>-->
-<!--                {{/role_moder}}-->
-<!--                {{#role_user}}-->
-<!--                    <input type="radio" name="userRole" value="admin" > Admin<br>-->
-<!--                    <input type="radio" name="userRole" value="moder" > Moder<br>-->
-<!--                 <input type="radio" name="userRole" value="user" checked> User<br>-->
-<!--                {{/role_user}}-->
-<!--            </label></div>-->
-<!--        {{/role_changeable}}-->
-<!--    {{/is_admin}}-->
+    <span sec:authorize="hasAuthority('ADMIN')">
+        <span th:if="${role_changeable}">
+            <div><label> Role : <br>
+                <span th:if="${role_admin}">
+                    <input type="radio" name="userRole" value="admin" checked> Admin<br>
+                    <input type="radio" name="userRole" value="moder" > Moder<br>
+                    <input type="radio" name="userRole" value="user" > User<br>
+                </span>
+                <span th:if="${role_moder}">
+                    <input type="radio" name="userRole" value="admin" > Admin<br>
+                    <input type="radio" name="userRole" value="moder" checked> Moder<br>
+                    <input type="radio" name="userRole" value="user" > User<br>
+                </span>
+                <span th:if="${role_user}">
+                    <input type="radio" name="userRole" value="admin" > Admin<br>
+                    <input type="radio" name="userRole" value="moder" > Moder<br>
+                    <input type="radio" name="userRole" value="user" checked> User<br>
+                </span>
+            </label></div>
+        </span>
+    </span>
 
     <div><label> Company : <input type="text" name="company" th:value="${user.company}"> </label></div>
     <div><label> Birth Date : <input type="date" name="birthDate" th:value="${user.birthDate}"> </label></div>
