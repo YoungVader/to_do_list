@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security4">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
 
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
@@ -17,6 +17,7 @@
     <th>Company</th>
     <th>Birth date</th>
     <th>Address</th>
+    <th>Role</th>
     <span sec:authorize="hasAuthority('MODER')">
         <th></th>
     </span>
@@ -33,6 +34,7 @@
         <td th:text="${user.company}">Company</td>
         <td th:text="${user.birthDate}">Birth date</td>
         <td th:text="${user.address}">Address</td>
+        <td th:text="${user.roles}">Role</td>
         <span sec:authorize="hasAuthority('MODER')">
             <td><form th:action="@{/edit/user}" method="get">
                 <input name="id" type="hidden" th:value="${user.id}">
