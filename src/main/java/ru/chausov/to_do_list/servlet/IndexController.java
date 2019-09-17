@@ -4,11 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ru.chausov.to_do_list.data_base.entity.Visit;
-import ru.chausov.to_do_list.data_base.repository.VisitRepository;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
 import java.util.Map;
 
 
@@ -16,15 +13,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class IndexController {
 
-    private final VisitRepository visitRepository;
-
     @GetMapping("")
     public ModelAndView greeting(Principal authUser, Map<String, Object> model) {
-        Visit visit = Visit.builder()
-                .description(String.format("Visited at %s", LocalDateTime.now()))
-                .build();
-        visitRepository.save(visit);
-
         try {
             model.put("username", authUser.getName());
         } catch (NullPointerException exception) {
