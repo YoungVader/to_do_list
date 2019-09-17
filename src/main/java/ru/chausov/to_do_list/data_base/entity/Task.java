@@ -23,6 +23,7 @@ public class Task {
     private Long id;
     private String name;
     private String description;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate receivedDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate toBeDone;
