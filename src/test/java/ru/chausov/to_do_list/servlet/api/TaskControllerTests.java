@@ -14,10 +14,11 @@ import ru.chausov.to_do_list.data_base.entity.Task;
 import ru.chausov.to_do_list.data_base.entity.User;
 import ru.chausov.to_do_list.data_base.repository.TaskRepository;
 import ru.chausov.to_do_list.data_base.repository.UserRepository;
-import ru.chausov.to_do_list.data_base.type.Role;
 import ru.chausov.to_do_list.servlet.TaskController;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @RunWith(SpringRunner.class)
