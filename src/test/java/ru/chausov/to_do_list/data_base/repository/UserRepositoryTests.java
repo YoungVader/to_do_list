@@ -29,24 +29,6 @@ public class UserRepositoryTests {
     }
 
     @Test
-    public void findTest() {
-        User userToFind = User.builder().build();
-
-        Set<Role> roles = new HashSet<>();
-
-        roles.add(Role.USER);
-
-        userToFind.setRoles(roles);
-
-        userRepository.save(userToFind);
-
-        User foundUser = userRepository.findById(userToFind.getId()).get();
-
-        Assert.assertEquals(userToFind, foundUser);
-    }
-
-
-    @Test
     public void deleteTest() {
         User user = User.builder().build();
 
