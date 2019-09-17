@@ -55,15 +55,18 @@ public class TaskControllerTests {
         Assert.assertEquals(taskToAdd.getDescription(), addedTask.getDescription());
     }
 
+    @WithMockUser(username = "user", password = "123")
     @Test
     public void updateTaskTest() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         Task taskToUpdate = Task.builder().build();
 
         taskRepository.save(taskToUpdate);
 
         Map<String, Object> model = new HashMap<>();
 
-        ModelAndView modelAndView = taskController.updateTask(taskToUpdate.getId(),
+        ModelAndView modelAndView = taskController.updateTask(auth, taskToUpdate.getId(),
                 Task.builder().name("TestName").build(), model);
 
         Task updatedTask = (Task) modelAndView.getModel().get("task");
@@ -72,8 +75,11 @@ public class TaskControllerTests {
         Assert.assertNotEquals(updatedTask.getName(), taskToUpdate.getName());
     }
 
+    @WithMockUser(username = "user", password = "123")
     @Test
     public void setTaskDoneTest() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         Task taskToSetDone = new Task();
 
         taskRepository.save(taskToSetDone);
@@ -83,7 +89,7 @@ public class TaskControllerTests {
 
         Map<String, Object> model = new HashMap<>();
 
-        ModelAndView modelAndView = taskController.setTaskDone(taskToSetDone.getId(),
+        ModelAndView modelAndView = taskController.setTaskDone(auth, taskToSetDone.getId(),
                 model);
 
         Task setDoneTask = (Task) modelAndView.getModel().get("task");
@@ -91,7 +97,7 @@ public class TaskControllerTests {
         Assert.assertNotNull(setDoneTask);
         Assert.assertTrue(setDoneTask.isDone());
 
-        modelAndView = taskController.setTaskDone(taskToSetDone.getId(),
+        modelAndView = taskController.setTaskDone(auth, taskToSetDone.getId(),
                 model);
         setDoneTask = (Task) modelAndView.getModel().get("task");
 
