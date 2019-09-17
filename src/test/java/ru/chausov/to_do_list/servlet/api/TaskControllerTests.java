@@ -16,9 +16,7 @@ import ru.chausov.to_do_list.data_base.repository.TaskRepository;
 import ru.chausov.to_do_list.data_base.repository.UserRepository;
 import ru.chausov.to_do_list.servlet.TaskController;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
