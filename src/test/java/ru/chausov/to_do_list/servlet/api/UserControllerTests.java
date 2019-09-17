@@ -6,14 +6,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.servlet.ModelAndView;
 import ru.chausov.to_do_list.data_base.entity.User;
 import ru.chausov.to_do_list.data_base.repository.UserRepository;
+import ru.chausov.to_do_list.data_base.type.Role;
 import ru.chausov.to_do_list.servlet.UserController;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 @RunWith(SpringRunner.class)
@@ -57,5 +60,33 @@ public class UserControllerTests {
 
         Assert.assertNotNull(updatedUser);
         Assert.assertNotEquals(updatedUser.getName(), userToUpdate.getName());
+    }
+
+    @WithMockUser(username = "administrator", password = "123")
+    @Test
+    public void deleteUserTest() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        User admin = User.builder().username("administrator").password("123").build();
+
+        Set roles = new HashSet();
+
+        roles.add(Role.ADMIN);
+
+        admin.setRoles(roles);
+
+        userRepository.save(admin);
+
+        User user = User.builder().username("user").password("123").build();
+
+        userRepository.save(user);
+
+        long countBefore = ((Collection<User>) userRepository.findAll()).size();
+
+        userController.deleteUser(auth, user.getId());
+
+        long countAfter = ((Collection<User>) userRepository.findAll()).size();
+
+        Assert.assertEquals(countAfter, countBefore - 1);
     }
 }

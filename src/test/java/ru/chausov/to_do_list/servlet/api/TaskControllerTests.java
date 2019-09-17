@@ -14,10 +14,10 @@ import ru.chausov.to_do_list.data_base.entity.Task;
 import ru.chausov.to_do_list.data_base.entity.User;
 import ru.chausov.to_do_list.data_base.repository.TaskRepository;
 import ru.chausov.to_do_list.data_base.repository.UserRepository;
+import ru.chausov.to_do_list.data_base.type.Role;
 import ru.chausov.to_do_list.servlet.TaskController;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 @RunWith(SpringRunner.class)
@@ -111,5 +111,27 @@ public class TaskControllerTests {
 
         Assert.assertNotNull(setDoneTask);
         Assert.assertTrue(!setDoneTask.isDone());
+    }
+
+    @WithMockUser(username = "deleteUser", password = "123")
+    @Test
+    public void deleteTaskTest() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        User user = User.builder().username("deleteUser").password("123").build();
+
+        userRepository.save(user);
+
+        Task taskToDelete = Task.builder().user(user).build();
+
+        taskRepository.save(taskToDelete);
+
+        long countBefore = ((Collection<Task>) taskRepository.findAll()).size();
+
+        taskController.deleteTask(auth, taskToDelete.getId());
+
+        long countAfter = ((Collection<Task>) taskRepository.findAll()).size();
+
+        Assert.assertEquals(countAfter, countBefore - 1);
     }
 }
