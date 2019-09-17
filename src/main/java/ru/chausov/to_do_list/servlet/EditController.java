@@ -30,11 +30,6 @@ public class EditController {
 
         model.put("user", user);
 
-        if(user.getGender().equals("male"))
-            model.put("gender", false);
-        else if(user.getGender().equals("female"))
-            model.put("gender", true);
-
         return new ModelAndView("edit_profile", model);
     }
 
@@ -44,11 +39,6 @@ public class EditController {
         User user = userRepository.findById(id).get();
 
         model.put("user", user);
-
-//        if(user.getGender().equals("male"))
-//            model.put("gender", false);
-//        else if(user.getGender().equals("female"))
-//            model.put("gender", true);
 
         User authorisedUser = userRepository.findByUsername(authUser.getName());
 
@@ -61,11 +51,7 @@ public class EditController {
 
             if (user.getRoles().contains(Role.USER))
                 model.put("role_user", true);
-
-            model.put("is_admin", true);
         }
-        else
-            model.put("is_admin", false);
 
         if(user.getUsername().equals("admin"))
             model.put("role_changeable", false);
