@@ -41,8 +41,21 @@ public class UserControllerTests {
         Assert.assertEquals(userToAdd, addedUser);
     }
 
+    @WithMockUser(username = "updUser", password = "123")
     @Test
     public void updateUserTest() throws Exception {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        User user = User.builder().username("updUser").password("123").build();
+
+        Set roles = new HashSet();
+
+        roles.add(Role.ADMIN);
+
+        user.setRoles(roles);
+
+        userRepository.save(user);
+
         User userToUpdate = User.builder().username("testUser").password("testPassword")
                 .build();
 
@@ -50,7 +63,7 @@ public class UserControllerTests {
 
         Map<String, Object> model = new HashMap<>();
 
-        ModelAndView modelAndView = userController.updateUser(userToUpdate.getId(),
+        ModelAndView modelAndView = userController.updateUser(auth, userToUpdate.getId(),
                 User.builder().name("TestName").password("123").build(),
                 null,
                 null,

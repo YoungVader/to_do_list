@@ -66,53 +66,68 @@ public class UserController {
 
     @Transactional
     @PostMapping("/delete")
-    public ModelAndView deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public ModelAndView deleteUser(Principal authUser, Long id) {
+        User user = userRepository.findByUsername(authUser.getName());
 
+        if(user.getRoles().contains(Role.ADMIN)) {
+            User userToDelete = userRepository.findById(id).get();
+
+            if(!userToDelete.equals("admin"))
+                userRepository.deleteById(id);
+        }
         return new ModelAndView("redirect:/users/table");
     }
 
     @Transactional
     @PostMapping("/update")
-    public ModelAndView updateUser(Long id, User user, String userRole, String userEdit, Map<String, Object> model) {
+    public ModelAndView updateUser(Principal authUser, Long id, User user, String userRole, String userEdit, Map<String, Object> model) {
+        User updater = userRepository.findByUsername(authUser.getName());
+
         User userToUpdate = userRepository.findById(id).get();
 
-        userToUpdate.setName(user.getName());
-        userToUpdate.setLastName(user.getLastName());
-        userToUpdate.setBirthDate(user.getBirthDate());
-        userToUpdate.setGender(user.getGender());
-        userToUpdate.setCompany(user.getCompany());
-        userToUpdate.setAddress(user.getAddress());
+        boolean updateHimself = false;
 
-        if(userRole != null){
-            Set<Role> roles = new HashSet<>();
+        if(updater.getId().equals(id))
+            updateHimself = true;
 
-            if(userRole.equals("admin")) {
-                roles.add(Role.ADMIN);
+        if(updater.getRoles().contains("ADMIN")
+                || updater.getRoles().contains("MODER")
+                || updateHimself) {
+            userToUpdate.setName(user.getName());
+            userToUpdate.setLastName(user.getLastName());
+            userToUpdate.setBirthDate(user.getBirthDate());
+            userToUpdate.setGender(user.getGender());
+            userToUpdate.setCompany(user.getCompany());
+            userToUpdate.setAddress(user.getAddress());
 
-                userToUpdate.setRoles(roles);
+            if (userRole != null && !userToUpdate.getUsername().equals("admin")) {
+                Set<Role> roles = new HashSet<>();
+
+                if (userRole.equals("admin")) {
+                    roles.add(Role.ADMIN);
+
+                    userToUpdate.setRoles(roles);
+                } else if (userRole.equals("moder")) {
+                    roles.add(Role.MODER);
+
+                    userToUpdate.setRoles(roles);
+                } else {
+                    roles.add(Role.USER);
+
+                    userToUpdate.setRoles(roles);
+                }
             }
-            else if(userRole.equals("moder")){
-                roles.add(Role.MODER);
 
-                userToUpdate.setRoles(roles);
+            model.put("user", userRepository.save(userToUpdate));
+
+            if (userEdit != null)
+                return new ModelAndView("redirect:/users/table", model);
+
+            if (!userToUpdate.getPassword().equals(user.getPassword())) {
+                userToUpdate.setPassword(passwordEncoder.encode(user.getPassword()));
+
+                return new ModelAndView("redirect:/logout", model);
             }
-            else{
-                roles.add(Role.USER);
-
-                userToUpdate.setRoles(roles);
-            }
-        }
-
-        model.put("user", userRepository.save(userToUpdate));
-
-        if(userEdit != null)
-            return new ModelAndView("redirect:/users/table", model);
-
-        if(!userToUpdate.getPassword().equals(user.getPassword())){
-            userToUpdate.setPassword(passwordEncoder.encode(user.getPassword()));
-
-            return new ModelAndView("redirect:/logout", model);
         }
 
         return new ModelAndView("redirect:/index", model);
