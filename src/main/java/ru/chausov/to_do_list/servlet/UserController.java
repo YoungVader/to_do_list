@@ -90,8 +90,8 @@ public class UserController {
         if(updater.getId().equals(id))
             updateHimself = true;
 
-        if(updater.getRoles().contains("ADMIN")
-                || updater.getRoles().contains("MODER")
+        if(updater.getRoles().contains(Role.ADMIN)
+                || updater.getRoles().contains(Role.MODER)
                 || updateHimself) {
             userToUpdate.setName(user.getName());
             userToUpdate.setLastName(user.getLastName());
