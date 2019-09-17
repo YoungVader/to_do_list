@@ -24,7 +24,5 @@ spring:
     mode: HTML
     prefix: classpath:/templates/
     suffix: .html
-  mustache:
-    expose-request-attributes: true
 server:
   port: 80
